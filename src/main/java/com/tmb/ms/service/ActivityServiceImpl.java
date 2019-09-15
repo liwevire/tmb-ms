@@ -42,14 +42,10 @@ public class ActivityServiceImpl implements ActivityService {
 			logger.error(iae.getMessage(), iae);
 			activityResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
 			activityResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
-		} catch (ConfigurationException ce) {
-			logger.error(ce.getMessage(), ce);
-			activityResponse.setStatusCode(MsConstant.MAPPER_CONFIG_ERR_CODE);
-			activityResponse.setStatusMessage(MsConstant.MAPPER_CONFIG_ERR_MSG + ":" + ce.getMessage());
-		} catch (MappingException me) {
-			logger.error(me.getMessage(), me);
+		} catch (ConfigurationException|MappingException ceme) {
+			logger.error(ceme.getMessage(), ceme);
 			activityResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
-			activityResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + me.getMessage());
+			activityResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			activityResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
@@ -57,8 +53,6 @@ public class ActivityServiceImpl implements ActivityService {
 		} finally {
 			if (activityResponse.getStatusCode() < 300)
 				logger.info(activityResponse.toString());
-			else
-				logger.error(activityResponse.toString());
 		}
 		return activityResponse;
 	}

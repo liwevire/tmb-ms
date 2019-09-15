@@ -42,14 +42,10 @@ public class ItemServiceImpl implements ItemService {
 			logger.error(iae.getMessage(), iae);
 			itemResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
 			itemResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
-		} catch (ConfigurationException ce) {
-			logger.error(ce.getMessage(), ce);
-			itemResponse.setStatusCode(MsConstant.MAPPER_CONFIG_ERR_CODE);
-			itemResponse.setStatusMessage(MsConstant.MAPPER_CONFIG_ERR_MSG + ":" + ce.getMessage());
-		} catch (MappingException me) {
-			logger.error(me.getMessage(), me);
+		} catch (ConfigurationException|MappingException ceme) {
+			logger.error(ceme.getMessage(), ceme);
 			itemResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
-			itemResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + me.getMessage());
+			itemResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			itemResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
@@ -57,8 +53,6 @@ public class ItemServiceImpl implements ItemService {
 		} finally {
 			if (itemResponse.getStatusCode() < 300)
 				logger.info(itemResponse.toString());
-			else
-				logger.error(itemResponse.toString());
 		}
 		return itemResponse;
 	}

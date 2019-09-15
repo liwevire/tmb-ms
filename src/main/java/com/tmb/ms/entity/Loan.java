@@ -16,10 +16,12 @@ import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
+@ToString
 @Table(name = "loan")
 public class Loan {
 	@Id
@@ -27,7 +29,7 @@ public class Loan {
 	@Column(name = "id", nullable = false, unique = true)
 	private long id;
 
-	@ManyToOne
+	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
 	private Customer customer;
 
 	private String status;
@@ -37,8 +39,8 @@ public class Loan {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
 	private Set<Item> items = new HashSet<Item>();
-	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
+	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
 	@JoinColumn(name = "loan_id")
 	private Set<Activity> activities = new HashSet<Activity>();
 }

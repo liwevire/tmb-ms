@@ -42,14 +42,10 @@ public class CustomerServiceImpl implements CustomerService {
 			logger.error(iae.getMessage(), iae);
 			customerResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
 			customerResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
-		} catch (ConfigurationException ce) {
-			logger.error(ce.getMessage(), ce);
-			customerResponse.setStatusCode(MsConstant.MAPPER_CONFIG_ERR_CODE);
-			customerResponse.setStatusMessage(MsConstant.MAPPER_CONFIG_ERR_MSG + ":" + ce.getMessage());
-		} catch (MappingException me) {
-			logger.error(me.getMessage(), me);
+		} catch (ConfigurationException|MappingException ceme) {
+			logger.error(ceme.getMessage(), ceme);
 			customerResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
-			customerResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + me.getMessage());
+			customerResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			customerResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
@@ -57,8 +53,6 @@ public class CustomerServiceImpl implements CustomerService {
 		} finally {
 			if (customerResponse.getStatusCode() < 300)
 				logger.info(customerResponse.toString());
-			else
-				logger.error(customerResponse.toString());
 		}
 		return customerResponse;
 	}

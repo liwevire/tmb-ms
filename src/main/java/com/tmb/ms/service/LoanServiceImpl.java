@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.response.LoanResponse;
 import com.tmb.ms.entity.Loan;
+import com.tmb.ms.repo.CustomerRepo;
 import com.tmb.ms.repo.LoanRepo;
 import com.tmb.ms.util.MsConstant;
 
@@ -21,6 +22,8 @@ public class LoanServiceImpl implements LoanService {
 
 	@Autowired
 	private LoanRepo loanRepo;
+	@Autowired
+	private CustomerRepo customerRepo;
 	private ModelMapper mapper = new ModelMapper();
 	private Logger logger = LoggerFactory.getLogger(LoanServiceImpl.class);
 
@@ -42,14 +45,10 @@ public class LoanServiceImpl implements LoanService {
 			logger.error(iae.getMessage(), iae);
 			loanResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
 			loanResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
-		} catch (ConfigurationException ce) {
-			logger.error(ce.getMessage(), ce);
-			loanResponse.setStatusCode(MsConstant.MAPPER_CONFIG_ERR_CODE);
-			loanResponse.setStatusMessage(MsConstant.MAPPER_CONFIG_ERR_MSG + ":" + ce.getMessage());
-		} catch (MappingException me) {
-			logger.error(me.getMessage(), me);
+		} catch (ConfigurationException | MappingException ceme) {
+			logger.error(ceme.getMessage(), ceme);
 			loanResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
-			loanResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + me.getMessage());
+			loanResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			loanResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
@@ -57,8 +56,28 @@ public class LoanServiceImpl implements LoanService {
 		} finally {
 			if (loanResponse.getStatusCode() < 300)
 				logger.info(loanResponse.toString());
-			else
-				logger.error(loanResponse.toString());
+		}
+		return loanResponse;
+	}
+
+	@Override
+	public LoanResponse addLoan(Loan loan) {
+		LoanResponse loanResponse = new LoanResponse();
+		try {
+			if (loan.getCustomer().getId() != 0) {
+				loan.setCustomer(customerRepo.findById(loan.getCustomer().getId()).get());
+			}
+			loan = loanRepo.save(loan);
+			loanResponse = mapper.map(loan, LoanResponse.class);
+			loanResponse.setStatusCode(MsConstant.SUCCESS_CODE);
+			loanResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			loanResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
+			loanResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
+		} finally {
+			if (loanResponse.getStatusCode() < 300)
+				logger.info(loanResponse.toString());
 		}
 		return loanResponse;
 	}
