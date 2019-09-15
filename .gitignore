@@ -30,7 +30,5 @@ build/
 ### VS Code ###
 .vscode/
 
-### .mvn ###
-
 ### MS-app ###
-target/
+logs/
