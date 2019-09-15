@@ -7,7 +7,7 @@ import java.util.Set;
 
 import com.tmb.ms.entity.Customer;
 import com.tmb.ms.entity.Item;
-import com.tmb.ms.entity.Transaction;
+import com.tmb.ms.entity.Activity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,5 +23,5 @@ public class LoanResponse extends CommonResponse {
 	private String weight;
 	private String comment;
 	private List<Item> items = new ArrayList<Item>();
-	private List<Transaction> transactions = new ArrayList<Transaction>();
+	private List<Activity> activities = new ArrayList<Activity>();
 }

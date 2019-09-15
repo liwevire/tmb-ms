@@ -15,13 +15,13 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "transaction")
-public class Transaction {
+@Table(name = "activity")
+public class Activity {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id", nullable=false, unique=true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, unique = true)
 	private long id;
-	@Column(name="loan_id", nullable = false)
+	@Column(name = "loan_id", nullable = false)
 	private long loanId;
 	private Date date = new Date();
 	private int category;

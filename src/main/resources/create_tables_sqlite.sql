@@ -26,7 +26,7 @@ CREATE TABLE "item" (
 	FOREIGN KEY("loan_id") REFERENCES "loan"("id")
 );
 
-CREATE TABLE "transaction" (
+CREATE TABLE "activity" (
 	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	"loan_id"	INTEGER NOT NULL,
 	"date"	datetime NOT NULL,

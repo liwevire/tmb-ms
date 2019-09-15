@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TransactionResponse extends CommonResponse {
+public class ActivityResponse extends CommonResponse {
 	private long id;
 	private long loanId;
 	private Date date = new Date();

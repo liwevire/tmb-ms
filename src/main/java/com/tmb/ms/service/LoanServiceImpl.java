@@ -35,16 +35,13 @@ public class LoanServiceImpl implements LoanService {
 			loanResponse.setStatusCode(MsConstant.DB_REPO_FAILURE_CODE);
 			loanResponse.setStatusMessage(MsConstant.DB_REPO_FAILURE_MSG + ":" + e.getMessage());
 		}
-//		try {
-//			System.out.println("@##@#@#@");
-//			System.out.println(loan.toString());
-//			
-//			loanResponse = mapper.map(loan, LoanResponse.class);
-//			loanResponse.setStatusCode(MsConstant.SUCCESS_CODE);
-//			loanResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
+		try {
+			loanResponse = mapper.map(loan, LoanResponse.class);
+			loanResponse.setStatusCode(MsConstant.SUCCESS_CODE);
+			loanResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return loanResponse;
 	}
 }

@@ -42,5 +42,5 @@ public class Loan {
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
-	private List<Transaction> transactions = new ArrayList<Transaction>();
+	private List<Activity> activities = new ArrayList<Activity>();
 }
