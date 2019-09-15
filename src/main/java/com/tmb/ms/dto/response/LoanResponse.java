@@ -1,8 +1,6 @@
 package com.tmb.ms.dto.response;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import com.tmb.ms.entity.Customer;
@@ -22,6 +20,6 @@ public class LoanResponse extends CommonResponse {
 	private String status;
 	private String weight;
 	private String comment;
-	private List<Item> items = new ArrayList<Item>();
-	private List<Activity> activities = new ArrayList<Activity>();
+	private Set<Item> items = new HashSet<Item>();
+	private Set<Activity> activities = new HashSet<Activity>();
 }

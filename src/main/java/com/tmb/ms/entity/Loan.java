@@ -1,8 +1,6 @@
 package com.tmb.ms.entity;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -38,9 +36,9 @@ public class Loan {
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
-	private List<Item> items = new ArrayList<Item>();
+	private Set<Item> items = new HashSet<Item>();
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
-	private List<Activity> activities = new ArrayList<Activity>();
+	private Set<Activity> activities = new HashSet<Activity>();
 }

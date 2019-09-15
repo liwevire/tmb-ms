@@ -1,0 +1,657 @@
+2019-09-16 00:06:48.502  INFO 4224 --- [RMI TCP Connection(31)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-09-16 00:06:48.513  INFO 4224 --- [RMI TCP Connection(31)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:06:48.516  INFO 4224 --- [RMI TCP Connection(31)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:06:48.519  INFO 4224 --- [RMI TCP Connection(31)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-09-16 00:06:48.522  INFO 4224 --- [RMI TCP Connection(31)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-09-16 00:06:52.835  INFO 1888 --- [main] com.tmb.ms.TmbMsApplication              : Starting TmbMsApplication on DESKTOP-84DQ78C with PID 1888 (C:\Users\premk\Documents\repo\tmb-ms\target\classes started by premk in C:\Users\premk\Documents\repo\tmb-ms)
+2019-09-16 00:06:52.838  INFO 1888 --- [main] com.tmb.ms.TmbMsApplication              : No active profile set, falling back to default profiles: default
+2019-09-16 00:06:53.519  INFO 1888 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-09-16 00:06:53.611  INFO 1888 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 84ms. Found 4 repository interfaces.
+2019-09-16 00:06:53.964  INFO 1888 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$3b92bfdb] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-16 00:06:54.222  INFO 1888 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6080 (http)
+2019-09-16 00:06:54.244  INFO 1888 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-16 00:06:54.245  INFO 1888 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-09-16 00:06:54.360  INFO 1888 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2019-09-16 00:06:54.361  INFO 1888 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1486 ms
+2019-09-16 00:06:54.531  INFO 1888 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-09-16 00:06:54.718  INFO 1888 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-09-16 00:06:54.766  INFO 1888 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-09-16 00:06:54.877  INFO 1888 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.11.Final}
+2019-09-16 00:06:54.879  INFO 1888 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-09-16 00:06:55.164  INFO 1888 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-09-16 00:06:55.275  INFO 1888 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:06:55.354  INFO 1888 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:06:55.390  INFO 1888 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+2019-09-16 00:06:56.148  INFO 1888 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:06:56.641  INFO 1888 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:06:56.674  WARN 1888 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-09-16 00:06:56.884  INFO 1888 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6080 (http) with context path '/api'
+2019-09-16 00:06:56.888  INFO 1888 --- [main] com.tmb.ms.TmbMsApplication              : Started TmbMsApplication in 4.49 seconds (JVM running for 5.37)
+2019-09-16 00:07:05.021  INFO 1888 --- [http-nio-6080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-16 00:07:05.022  INFO 1888 --- [http-nio-6080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-16 00:07:05.032  INFO 1888 --- [http-nio-6080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2019-09-16 00:07:05.140  INFO 1888 --- [http-nio-6080-exec-2] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:07:05.240  INFO 1888 --- [http-nio-6080-exec-2] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:07:05.240  INFO 1888 --- [http-nio-6080-exec-2] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:07:14.455  INFO 1888 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:07:14.486  INFO 1888 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@221350ad, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@1d229f03, com.tmb.ms.entity.Item@6a256341], activities=[com.tmb.ms.entity.Activity@4cfb8c62])
+2019-09-16 00:09:18.118  INFO 1888 --- [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-09-16 00:09:18.123  INFO 1888 --- [RMI TCP Connection(10)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:09:18.146  INFO 1888 --- [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:09:18.149  INFO 1888 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-09-16 00:09:18.153  INFO 1888 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-09-16 00:09:28.132  INFO 3904 --- [main] com.tmb.ms.TmbMsApplication              : Starting TmbMsApplication on DESKTOP-84DQ78C with PID 3904 (C:\Users\premk\Documents\repo\tmb-ms\target\classes started by premk in C:\Users\premk\Documents\repo\tmb-ms)
+2019-09-16 00:09:28.135  INFO 3904 --- [main] com.tmb.ms.TmbMsApplication              : No active profile set, falling back to default profiles: default
+2019-09-16 00:09:28.767  INFO 3904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-09-16 00:09:28.858  INFO 3904 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 83ms. Found 4 repository interfaces.
+2019-09-16 00:09:29.157  INFO 3904 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c1e142d9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-16 00:09:29.395  INFO 3904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6080 (http)
+2019-09-16 00:09:29.415  INFO 3904 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-16 00:09:29.416  INFO 3904 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-09-16 00:09:29.533  INFO 3904 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2019-09-16 00:09:29.533  INFO 3904 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1357 ms
+2019-09-16 00:09:29.676  INFO 3904 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-09-16 00:09:29.852  INFO 3904 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-09-16 00:09:29.910  INFO 3904 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-09-16 00:09:29.984  INFO 3904 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.11.Final}
+2019-09-16 00:09:29.985  INFO 3904 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-09-16 00:09:30.252  INFO 3904 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-09-16 00:09:30.323  INFO 3904 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:09:30.392  INFO 3904 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:09:30.416  INFO 3904 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+2019-09-16 00:09:31.057  INFO 3904 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:09:31.494  INFO 3904 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:09:31.526  WARN 3904 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-09-16 00:09:31.745  INFO 3904 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6080 (http) with context path '/api'
+2019-09-16 00:09:31.747  INFO 3904 --- [main] com.tmb.ms.TmbMsApplication              : Started TmbMsApplication in 4.046 seconds (JVM running for 4.914)
+2019-09-16 00:09:34.046  INFO 3904 --- [http-nio-6080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-16 00:09:34.047  INFO 3904 --- [http-nio-6080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-16 00:09:34.055  INFO 3904 --- [http-nio-6080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
+2019-09-16 00:09:34.144  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:09:34.260  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@18f06074, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@433dfba, com.tmb.ms.entity.Item@4fa870a0], activities=[com.tmb.ms.entity.Activity@5d23542f])
+2019-09-16 00:09:34.260  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@18f06074, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@433dfba, com.tmb.ms.entity.Item@4fa870a0], activities=[com.tmb.ms.entity.Activity@5d23542f])
+2019-09-16 00:09:36.274  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:09:36.284  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:09:36.285  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:09:39.014  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:09:39.021  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@220480b, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6793f1fe, com.tmb.ms.entity.Item@371b6487], activities=[com.tmb.ms.entity.Activity@61a09fd0])
+2019-09-16 00:09:39.021  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@220480b, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6793f1fe, com.tmb.ms.entity.Item@371b6487], activities=[com.tmb.ms.entity.Activity@61a09fd0])
+2019-09-16 00:09:48.101  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:09:48.110  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:09:48.111  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:09:49.755  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:09:49.761  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:09:49.761  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:09:50.586  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:09:50.590  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:09:50.592  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:09:51.176  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:09:51.182  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@5d1aee62, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@66c43cd4, com.tmb.ms.entity.Item@614edce1], activities=[com.tmb.ms.entity.Activity@2dbe5bd9])
+2019-09-16 00:09:51.183  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@5d1aee62, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@66c43cd4, com.tmb.ms.entity.Item@614edce1], activities=[com.tmb.ms.entity.Activity@2dbe5bd9])
+2019-09-16 00:11:07.632  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:11:07.636  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:11:07.637  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:11:07.725  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:11:07.728  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:11:07.728  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:11:07.813  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:11:07.815  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:11:07.816  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:11:07.908  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:11:07.914  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@160860b6, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@13bdc01c, com.tmb.ms.entity.Item@56a200c5], activities=[com.tmb.ms.entity.Activity@2e72d443])
+2019-09-16 00:11:07.914  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@160860b6, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@13bdc01c, com.tmb.ms.entity.Item@56a200c5], activities=[com.tmb.ms.entity.Activity@2e72d443])
+2019-09-16 00:11:22.897  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:11:22.900  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:11:22.901  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:11:22.958  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:11:22.961  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:11:22.961  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:11:23.055  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:11:23.057  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:11:23.057  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:11:23.119  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:11:23.126  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@5d95b8bd, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@79803e2, com.tmb.ms.entity.Item@41cad764], activities=[com.tmb.ms.entity.Activity@34114074])
+2019-09-16 00:11:23.126  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@5d95b8bd, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@79803e2, com.tmb.ms.entity.Item@41cad764], activities=[com.tmb.ms.entity.Activity@34114074])
+2019-09-16 00:12:28.744  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:12:28.748  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:28.749  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:28.819  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:12:28.822  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:28.822  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:28.900  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:12:28.902  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:28.903  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:28.988  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:12:28.992  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@7c6ab160, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@a67afff, com.tmb.ms.entity.Item@46968ff4], activities=[com.tmb.ms.entity.Activity@44c664e7])
+2019-09-16 00:12:28.992  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@7c6ab160, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@a67afff, com.tmb.ms.entity.Item@46968ff4], activities=[com.tmb.ms.entity.Activity@44c664e7])
+2019-09-16 00:12:29.168  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:12:29.170  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:29.170  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:29.259  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:12:29.261  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:29.261  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:29.346  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:12:29.350  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:29.350  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:29.446  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:12:29.453  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@48011b87, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@17c88c7e, com.tmb.ms.entity.Item@276066d8], activities=[com.tmb.ms.entity.Activity@78771609])
+2019-09-16 00:12:29.454  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@48011b87, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@17c88c7e, com.tmb.ms.entity.Item@276066d8], activities=[com.tmb.ms.entity.Activity@78771609])
+2019-09-16 00:12:29.844  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:12:29.846  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:29.846  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:29.954  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:12:29.956  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:29.957  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:30.040  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:12:30.042  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:30.042  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:30.123  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:12:30.128  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@71620d9d, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6886503c, com.tmb.ms.entity.Item@3ffc239b], activities=[com.tmb.ms.entity.Activity@4eeb995c])
+2019-09-16 00:12:30.128  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@71620d9d, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6886503c, com.tmb.ms.entity.Item@3ffc239b], activities=[com.tmb.ms.entity.Activity@4eeb995c])
+2019-09-16 00:12:57.685  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:12:57.689  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:57.689  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:57.761  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:12:57.765  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:57.765  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:57.828  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:12:57.829  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:57.830  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:57.896  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:12:57.902  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@56bc88e, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@56220b2, com.tmb.ms.entity.Item@5bebf87d], activities=[com.tmb.ms.entity.Activity@7c97f2d6])
+2019-09-16 00:12:57.902  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@56bc88e, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@56220b2, com.tmb.ms.entity.Item@5bebf87d], activities=[com.tmb.ms.entity.Activity@7c97f2d6])
+2019-09-16 00:12:58.369  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:12:58.372  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:58.372  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:58.440  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:12:58.444  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:58.444  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:58.513  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:12:58.515  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:58.516  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:58.601  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:12:58.607  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@56b8d7e7, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@4b313b2d, com.tmb.ms.entity.Item@39a3fddd], activities=[com.tmb.ms.entity.Activity@2b2ac68b])
+2019-09-16 00:12:58.608  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@56b8d7e7, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@4b313b2d, com.tmb.ms.entity.Item@39a3fddd], activities=[com.tmb.ms.entity.Activity@2b2ac68b])
+2019-09-16 00:12:59.010  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:12:59.012  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:59.013  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:12:59.075  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:12:59.078  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:59.079  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:12:59.157  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:12:59.159  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:59.159  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:12:59.237  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:12:59.243  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@4c9e5d4f, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6cb6df2f, com.tmb.ms.entity.Item@6f5cbf98], activities=[com.tmb.ms.entity.Activity@1d5ff1a6])
+2019-09-16 00:12:59.243  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@4c9e5d4f, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6cb6df2f, com.tmb.ms.entity.Item@6f5cbf98], activities=[com.tmb.ms.entity.Activity@1d5ff1a6])
+2019-09-16 00:13:01.933  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:01.936  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:01.937  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:02.049  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:02.052  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:02.052  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:02.150  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:02.153  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:02.155  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:02.238  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:02.244  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@2ab02ba6, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@7a7e1766, com.tmb.ms.entity.Item@9c643bb], activities=[com.tmb.ms.entity.Activity@1c91025])
+2019-09-16 00:13:02.244  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@2ab02ba6, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@7a7e1766, com.tmb.ms.entity.Item@9c643bb], activities=[com.tmb.ms.entity.Activity@1c91025])
+2019-09-16 00:13:02.867  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:02.869  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:02.870  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:02.947  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:02.952  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:02.952  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:03.040  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:03.042  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:03.042  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:03.120  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:03.128  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@722ba9cd, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@60ba2e28, com.tmb.ms.entity.Item@1a9dbc01], activities=[com.tmb.ms.entity.Activity@6276f388])
+2019-09-16 00:13:03.128  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@722ba9cd, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@60ba2e28, com.tmb.ms.entity.Item@1a9dbc01], activities=[com.tmb.ms.entity.Activity@6276f388])
+2019-09-16 00:13:03.476  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:03.477  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:03.478  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:03.639  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:03.640  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:03.641  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:03.724  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:03.726  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:03.727  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:03.812  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:03.817  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6760fc90, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@5c5debac, com.tmb.ms.entity.Item@4eca31b4], activities=[com.tmb.ms.entity.Activity@c33484a])
+2019-09-16 00:13:03.817  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6760fc90, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@5c5debac, com.tmb.ms.entity.Item@4eca31b4], activities=[com.tmb.ms.entity.Activity@c33484a])
+2019-09-16 00:13:04.439  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:04.440  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:04.441  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:04.518  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:04.521  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:04.521  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:04.623  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:04.626  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:04.626  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:04.718  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:04.723  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@575d3e40, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@a0166d8, com.tmb.ms.entity.Item@1b3afb63], activities=[com.tmb.ms.entity.Activity@aec3a7f])
+2019-09-16 00:13:04.723  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@575d3e40, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@a0166d8, com.tmb.ms.entity.Item@1b3afb63], activities=[com.tmb.ms.entity.Activity@aec3a7f])
+2019-09-16 00:13:05.318  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:05.321  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:05.321  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:05.383  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:05.385  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:05.385  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:05.454  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:05.456  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:05.457  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:05.527  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:05.537  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@554ea783, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@41624d8, com.tmb.ms.entity.Item@7403e940], activities=[com.tmb.ms.entity.Activity@48fe8495])
+2019-09-16 00:13:05.537  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@554ea783, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@41624d8, com.tmb.ms.entity.Item@7403e940], activities=[com.tmb.ms.entity.Activity@48fe8495])
+2019-09-16 00:13:06.043  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:06.045  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:06.045  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:06.098  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:06.102  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:06.102  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:06.185  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:06.189  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:06.189  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:06.240  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:06.246  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@1ac8c43a, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@30cfaf5a, com.tmb.ms.entity.Item@4d808741], activities=[com.tmb.ms.entity.Activity@2717d16])
+2019-09-16 00:13:06.246  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@1ac8c43a, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@30cfaf5a, com.tmb.ms.entity.Item@4d808741], activities=[com.tmb.ms.entity.Activity@2717d16])
+2019-09-16 00:13:06.682  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:06.686  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:06.686  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:06.744  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:06.749  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:06.749  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:06.823  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:06.825  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:06.826  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:06.883  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:06.887  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@7659a7e5, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@59a840e5, com.tmb.ms.entity.Item@2645b30a], activities=[com.tmb.ms.entity.Activity@1a99f65])
+2019-09-16 00:13:06.887  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@7659a7e5, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@59a840e5, com.tmb.ms.entity.Item@2645b30a], activities=[com.tmb.ms.entity.Activity@1a99f65])
+2019-09-16 00:13:07.378  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:07.380  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:07.380  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:07.435  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:07.437  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:07.437  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:07.519  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:07.521  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:07.521  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:07.573  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:07.577  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@780d1257, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@32126284, com.tmb.ms.entity.Item@e13260c], activities=[com.tmb.ms.entity.Activity@4a11ebc6])
+2019-09-16 00:13:07.577  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@780d1257, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@32126284, com.tmb.ms.entity.Item@e13260c], activities=[com.tmb.ms.entity.Activity@4a11ebc6])
+2019-09-16 00:13:08.048  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:08.050  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:08.050  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:08.110  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:08.111  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:08.111  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:08.165  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:08.166  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:08.167  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:08.242  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:08.247  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@78972944, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@798e205a, com.tmb.ms.entity.Item@2074263b], activities=[com.tmb.ms.entity.Activity@54ca80c4])
+2019-09-16 00:13:08.248  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@78972944, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@798e205a, com.tmb.ms.entity.Item@2074263b], activities=[com.tmb.ms.entity.Activity@54ca80c4])
+2019-09-16 00:13:08.776  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:08.778  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:08.778  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:08.847  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:08.853  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:08.853  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:08.925  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:08.927  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:08.927  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:08.993  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:08.997  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@72fd8f3f, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@3e64025, com.tmb.ms.entity.Item@2896c726], activities=[com.tmb.ms.entity.Activity@14b07ed3])
+2019-09-16 00:13:08.998  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@72fd8f3f, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@3e64025, com.tmb.ms.entity.Item@2896c726], activities=[com.tmb.ms.entity.Activity@14b07ed3])
+2019-09-16 00:13:09.911  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:09.913  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:09.914  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:09.976  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:09.980  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:09.980  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:10.058  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:10.059  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:10.060  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:10.127  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:10.132  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@566a8976, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@12641e88, com.tmb.ms.entity.Item@43f2f78f], activities=[com.tmb.ms.entity.Activity@1a9c7cdd])
+2019-09-16 00:13:10.132  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@566a8976, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@12641e88, com.tmb.ms.entity.Item@43f2f78f], activities=[com.tmb.ms.entity.Activity@1a9c7cdd])
+2019-09-16 00:13:10.475  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:10.477  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:10.477  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:10.545  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:10.546  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:10.546  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:10.613  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:10.614  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:10.614  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:10.683  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:10.685  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@51c08fd9, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@4f718473, com.tmb.ms.entity.Item@1b4f8a10], activities=[com.tmb.ms.entity.Activity@76591389])
+2019-09-16 00:13:10.685  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@51c08fd9, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@4f718473, com.tmb.ms.entity.Item@1b4f8a10], activities=[com.tmb.ms.entity.Activity@76591389])
+2019-09-16 00:13:11.057  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:11.059  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:11.059  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:11.129  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:11.129  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:11.130  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:11.260  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:11.262  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:11.263  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:11.354  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:11.356  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@3cac6af6, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@399aacab, com.tmb.ms.entity.Item@2ec17c8], activities=[com.tmb.ms.entity.Activity@f1e8380])
+2019-09-16 00:13:11.358  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@3cac6af6, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@399aacab, com.tmb.ms.entity.Item@2ec17c8], activities=[com.tmb.ms.entity.Activity@f1e8380])
+2019-09-16 00:13:11.620  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:11.622  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:11.622  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:11.694  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:11.695  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:11.695  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:11.767  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:11.768  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:11.768  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:11.837  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:11.841  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6d7357ab, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@76df1043, com.tmb.ms.entity.Item@2604f03e], activities=[com.tmb.ms.entity.Activity@3cc51821])
+2019-09-16 00:13:11.842  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6d7357ab, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@76df1043, com.tmb.ms.entity.Item@2604f03e], activities=[com.tmb.ms.entity.Activity@3cc51821])
+2019-09-16 00:13:12.208  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:12.210  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:12.211  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:12.264  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:12.266  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:12.267  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:12.346  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:12.348  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:12.349  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:12.425  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:12.429  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@307d348a, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@4367f98f, com.tmb.ms.entity.Item@3f397eb], activities=[com.tmb.ms.entity.Activity@256e2d88])
+2019-09-16 00:13:12.429  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@307d348a, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@4367f98f, com.tmb.ms.entity.Item@3f397eb], activities=[com.tmb.ms.entity.Activity@256e2d88])
+2019-09-16 00:13:12.786  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:12.788  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:12.788  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:12.861  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:12.863  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:12.863  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:12.962  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:12.964  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:12.964  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:13.053  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:13.057  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@347c3e5e, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@2cc3b26, com.tmb.ms.entity.Item@76046721], activities=[com.tmb.ms.entity.Activity@625a7514])
+2019-09-16 00:13:13.057  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@347c3e5e, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@2cc3b26, com.tmb.ms.entity.Item@76046721], activities=[com.tmb.ms.entity.Activity@625a7514])
+2019-09-16 00:13:13.402  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:13.404  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:13.404  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:13.493  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:13.495  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:13.495  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:13.570  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:13.571  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:13.572  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:13.660  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:13.664  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@23604012, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@293df974, com.tmb.ms.entity.Item@79a5bfe8], activities=[com.tmb.ms.entity.Activity@6073b00a])
+2019-09-16 00:13:13.664  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@23604012, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@293df974, com.tmb.ms.entity.Item@79a5bfe8], activities=[com.tmb.ms.entity.Activity@6073b00a])
+2019-09-16 00:13:13.978  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:13.979  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:13.979  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:14.056  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:14.059  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:14.059  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:14.147  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:14.149  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:14.149  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:14.235  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:14.239  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@5712fd75, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@3f292a29, com.tmb.ms.entity.Item@773c577c], activities=[com.tmb.ms.entity.Activity@4c87d1c6])
+2019-09-16 00:13:14.239  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@5712fd75, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@3f292a29, com.tmb.ms.entity.Item@773c577c], activities=[com.tmb.ms.entity.Activity@4c87d1c6])
+2019-09-16 00:13:14.625  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:14.627  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:14.627  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:14.710  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:14.712  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:14.712  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:14.791  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:14.792  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:14.794  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:14.860  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:14.864  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@2f737d62, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@1600b017, com.tmb.ms.entity.Item@51d14fcd], activities=[com.tmb.ms.entity.Activity@c88a526])
+2019-09-16 00:13:14.864  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@2f737d62, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@1600b017, com.tmb.ms.entity.Item@51d14fcd], activities=[com.tmb.ms.entity.Activity@c88a526])
+2019-09-16 00:13:15.237  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:15.238  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:15.238  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:15.318  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:15.321  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:15.321  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:15.412  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:15.413  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:15.414  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:15.500  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:15.504  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@2aceea4b, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@70a82263, com.tmb.ms.entity.Item@218a8377], activities=[com.tmb.ms.entity.Activity@40278c1b])
+2019-09-16 00:13:15.504  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@2aceea4b, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@70a82263, com.tmb.ms.entity.Item@218a8377], activities=[com.tmb.ms.entity.Activity@40278c1b])
+2019-09-16 00:13:15.870  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:15.871  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:15.871  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:15.967  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:15.969  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:15.969  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:16.067  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:16.068  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:16.069  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:16.160  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:16.164  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6d72fa06, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@385748b, com.tmb.ms.entity.Item@33a68061], activities=[com.tmb.ms.entity.Activity@159f6018])
+2019-09-16 00:13:16.164  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6d72fa06, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@385748b, com.tmb.ms.entity.Item@33a68061], activities=[com.tmb.ms.entity.Activity@159f6018])
+2019-09-16 00:13:16.455  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:16.457  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:16.457  INFO 3904 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:16.550  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:16.553  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:16.553  INFO 3904 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:16.639  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:16.640  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:16.640  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:16.733  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:16.737  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@3ebac4a8, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@46517ddc, com.tmb.ms.entity.Item@b95405], activities=[com.tmb.ms.entity.Activity@62f0b944])
+2019-09-16 00:13:16.737  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@3ebac4a8, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@46517ddc, com.tmb.ms.entity.Item@b95405], activities=[com.tmb.ms.entity.Activity@62f0b944])
+2019-09-16 00:13:17.066  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:17.069  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:17.069  INFO 3904 --- [http-nio-6080-exec-10] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:17.138  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:17.141  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:17.141  INFO 3904 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:17.223  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:17.225  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:17.226  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:17.303  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:17.308  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@57846cee, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@5b415e68, com.tmb.ms.entity.Item@3a6da94e], activities=[com.tmb.ms.entity.Activity@6d4552cc])
+2019-09-16 00:13:17.308  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@57846cee, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@5b415e68, com.tmb.ms.entity.Item@3a6da94e], activities=[com.tmb.ms.entity.Activity@6d4552cc])
+2019-09-16 00:13:21.021  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:21.024  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:21.025  INFO 3904 --- [http-nio-6080-exec-4] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:21.102  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:21.104  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:21.104  INFO 3904 --- [http-nio-6080-exec-5] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:21.196  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:21.197  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:21.197  INFO 3904 --- [http-nio-6080-exec-6] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:21.279  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:21.284  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@7cb08e61, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6818d430, com.tmb.ms.entity.Item@798894c1], activities=[com.tmb.ms.entity.Activity@6866cecb])
+2019-09-16 00:13:21.284  INFO 3904 --- [http-nio-6080-exec-7] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@7cb08e61, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6818d430, com.tmb.ms.entity.Item@798894c1], activities=[com.tmb.ms.entity.Activity@6866cecb])
+2019-09-16 00:13:21.721  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:21.723  INFO 3904 --- [http-nio-6080-exec-8] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:21.723  INFO 3904 --- [http-nio-6080-exec-8] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:21.806  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:21.808  INFO 3904 --- [http-nio-6080-exec-9] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:21.808  INFO 3904 --- [http-nio-6080-exec-9] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:21.888  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:21.889  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:21.890  INFO 3904 --- [http-nio-6080-exec-10] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:21.991  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:21.994  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@194e1d0c, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@70c6e333, com.tmb.ms.entity.Item@77b7e07f], activities=[com.tmb.ms.entity.Activity@6e3ed517])
+2019-09-16 00:13:21.994  INFO 3904 --- [http-nio-6080-exec-2] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@194e1d0c, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@70c6e333, com.tmb.ms.entity.Item@77b7e07f], activities=[com.tmb.ms.entity.Activity@6e3ed517])
+2019-09-16 00:13:22.264  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:13:22.265  INFO 3904 --- [http-nio-6080-exec-1] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:22.265  INFO 3904 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:13:22.349  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:13:22.353  INFO 3904 --- [http-nio-6080-exec-3] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:22.353  INFO 3904 --- [http-nio-6080-exec-3] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:13:22.439  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:13:22.441  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:22.441  INFO 3904 --- [http-nio-6080-exec-4] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:13:22.543  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:13:22.547  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@643bb22d, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6eeaab18, com.tmb.ms.entity.Item@3e4c85f7], activities=[com.tmb.ms.entity.Activity@2adfb22f])
+2019-09-16 00:13:22.547  INFO 3904 --- [http-nio-6080-exec-5] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@643bb22d, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@6eeaab18, com.tmb.ms.entity.Item@3e4c85f7], activities=[com.tmb.ms.entity.Activity@2adfb22f])
+2019-09-16 00:16:04.977  INFO 3904 --- [RMI TCP Connection(15)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-09-16 00:16:04.979  INFO 3904 --- [RMI TCP Connection(15)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:16:04.981  INFO 3904 --- [RMI TCP Connection(15)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:16:04.983  INFO 3904 --- [RMI TCP Connection(15)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-09-16 00:16:04.986  INFO 3904 --- [RMI TCP Connection(15)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-09-16 00:16:17.773  INFO 5080 --- [main] com.tmb.ms.TmbMsApplication              : Starting TmbMsApplication on DESKTOP-84DQ78C with PID 5080 (C:\Users\premk\Documents\repo\tmb-ms\target\classes started by premk in C:\Users\premk\Documents\repo\tmb-ms)
+2019-09-16 00:16:17.776  INFO 5080 --- [main] com.tmb.ms.TmbMsApplication              : No active profile set, falling back to default profiles: default
+2019-09-16 00:16:18.448  INFO 5080 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-09-16 00:16:18.543  INFO 5080 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 88ms. Found 4 repository interfaces.
+2019-09-16 00:16:18.849  INFO 5080 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$da94987b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-16 00:16:19.092  INFO 5080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6080 (http)
+2019-09-16 00:16:19.117  INFO 5080 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-16 00:16:19.118  INFO 5080 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-09-16 00:16:19.236  INFO 5080 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2019-09-16 00:16:19.236  INFO 5080 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1420 ms
+2019-09-16 00:16:19.393  INFO 5080 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-09-16 00:16:19.568  INFO 5080 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-09-16 00:16:19.618  INFO 5080 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-09-16 00:16:19.687  INFO 5080 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.11.Final}
+2019-09-16 00:16:19.690  INFO 5080 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-09-16 00:16:19.930  INFO 5080 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-09-16 00:16:19.999  INFO 5080 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:16:20.085  INFO 5080 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:16:20.105  INFO 5080 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+2019-09-16 00:16:20.747  INFO 5080 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:16:21.214  INFO 5080 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:16:21.245  WARN 5080 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-09-16 00:16:21.446  INFO 5080 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6080 (http) with context path '/api'
+2019-09-16 00:16:21.448  INFO 5080 --- [main] com.tmb.ms.TmbMsApplication              : Started TmbMsApplication in 4.089 seconds (JVM running for 5.165)
+2019-09-16 00:16:26.516  INFO 5080 --- [http-nio-6080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-16 00:16:26.517  INFO 5080 --- [http-nio-6080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-16 00:16:26.528  INFO 5080 --- [http-nio-6080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2019-09-16 00:16:26.664  INFO 5080 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:16:26.763  INFO 5080 --- [http-nio-6080-exec-1] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:16:26.763  INFO 5080 --- [http-nio-6080-exec-1] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:16:26.933  INFO 5080 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:16:26.944  INFO 5080 --- [http-nio-6080-exec-2] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:16:26.945  INFO 5080 --- [http-nio-6080-exec-2] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:16:27.063  INFO 5080 --- [http-nio-6080-exec-3] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:16:27.067  INFO 5080 --- [http-nio-6080-exec-3] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:16:27.067  INFO 5080 --- [http-nio-6080-exec-3] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:16:27.170  INFO 5080 --- [http-nio-6080-exec-4] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:16:27.202  INFO 5080 --- [http-nio-6080-exec-4] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@85842d9, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@52632d88, com.tmb.ms.entity.Item@24eae595], activities=[com.tmb.ms.entity.Activity@1c0dec27])
+2019-09-16 00:16:27.202  INFO 5080 --- [http-nio-6080-exec-4] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@85842d9, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@52632d88, com.tmb.ms.entity.Item@24eae595], activities=[com.tmb.ms.entity.Activity@1c0dec27])
+2019-09-16 00:16:59.286  INFO 5080 --- [http-nio-6080-exec-5] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:16:59.289  INFO 5080 --- [http-nio-6080-exec-5] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:16:59.289  INFO 5080 --- [http-nio-6080-exec-5] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:17:03.724  INFO 5080 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:17:03.727  INFO 5080 --- [http-nio-6080-exec-6] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:17:03.728  INFO 5080 --- [http-nio-6080-exec-6] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:17:03.805  INFO 5080 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:17:03.810  INFO 5080 --- [http-nio-6080-exec-7] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:17:03.810  INFO 5080 --- [http-nio-6080-exec-7] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:17:03.927  INFO 5080 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:17:03.930  INFO 5080 --- [http-nio-6080-exec-8] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:17:03.930  INFO 5080 --- [http-nio-6080-exec-8] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:17:04.008  INFO 5080 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:17:04.014  INFO 5080 --- [http-nio-6080-exec-9] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6fd113d4, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@16d6259f, com.tmb.ms.entity.Item@20626569], activities=[com.tmb.ms.entity.Activity@536f02c1])
+2019-09-16 00:17:04.014  INFO 5080 --- [http-nio-6080-exec-9] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6fd113d4, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@16d6259f, com.tmb.ms.entity.Item@20626569], activities=[com.tmb.ms.entity.Activity@536f02c1])
+2019-09-16 00:17:57.894  INFO 5080 --- [RMI TCP Connection(10)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-09-16 00:17:57.897  INFO 5080 --- [RMI TCP Connection(10)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:17:57.900  INFO 5080 --- [RMI TCP Connection(10)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:17:57.902  INFO 5080 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-09-16 00:17:57.905  INFO 5080 --- [RMI TCP Connection(10)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-09-16 00:18:02.188  INFO 1560 --- [main] com.tmb.ms.TmbMsApplication              : Starting TmbMsApplication on DESKTOP-84DQ78C with PID 1560 (C:\Users\premk\Documents\repo\tmb-ms\target\classes started by premk in C:\Users\premk\Documents\repo\tmb-ms)
+2019-09-16 00:18:02.192  INFO 1560 --- [main] com.tmb.ms.TmbMsApplication              : No active profile set, falling back to default profiles: default
+2019-09-16 00:18:02.843  INFO 1560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-09-16 00:18:02.939  INFO 1560 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 88ms. Found 4 repository interfaces.
+2019-09-16 00:18:03.267  INFO 1560 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c3e6558b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-16 00:18:03.519  INFO 1560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6080 (http)
+2019-09-16 00:18:03.541  INFO 1560 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-16 00:18:03.541  INFO 1560 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-09-16 00:18:03.660  INFO 1560 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2019-09-16 00:18:03.661  INFO 1560 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1428 ms
+2019-09-16 00:18:03.813  INFO 1560 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-09-16 00:18:03.979  INFO 1560 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-09-16 00:18:04.033  INFO 1560 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-09-16 00:18:04.106  INFO 1560 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.11.Final}
+2019-09-16 00:18:04.107  INFO 1560 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-09-16 00:18:04.335  INFO 1560 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-09-16 00:18:04.414  INFO 1560 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:18:04.479  INFO 1560 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:18:04.504  INFO 1560 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+2019-09-16 00:18:05.117  INFO 1560 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:18:05.654  INFO 1560 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:18:05.700  WARN 1560 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-09-16 00:18:05.963  INFO 1560 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6080 (http) with context path '/api'
+2019-09-16 00:18:05.966  INFO 1560 --- [main] com.tmb.ms.TmbMsApplication              : Started TmbMsApplication in 4.218 seconds (JVM running for 5.097)
+2019-09-16 00:18:10.572  INFO 1560 --- [RMI TCP Connection(7)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-09-16 00:18:10.596  INFO 1560 --- [RMI TCP Connection(7)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:18:10.606  INFO 1560 --- [RMI TCP Connection(7)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:18:10.610  INFO 1560 --- [RMI TCP Connection(7)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-09-16 00:18:10.619  INFO 1560 --- [RMI TCP Connection(7)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2019-09-16 00:18:15.221  INFO 13780 --- [main] com.tmb.ms.TmbMsApplication              : Starting TmbMsApplication on DESKTOP-84DQ78C with PID 13780 (C:\Users\premk\Documents\repo\tmb-ms\target\classes started by premk in C:\Users\premk\Documents\repo\tmb-ms)
+2019-09-16 00:18:15.224  INFO 13780 --- [main] com.tmb.ms.TmbMsApplication              : No active profile set, falling back to default profiles: default
+2019-09-16 00:18:15.905  INFO 13780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2019-09-16 00:18:15.999  INFO 13780 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 86ms. Found 4 repository interfaces.
+2019-09-16 00:18:16.316  INFO 13780 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e02b8530] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-09-16 00:18:16.560  INFO 13780 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6080 (http)
+2019-09-16 00:18:16.583  INFO 13780 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-09-16 00:18:16.583  INFO 13780 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-09-16 00:18:16.701  INFO 13780 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2019-09-16 00:18:16.702  INFO 13780 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1444 ms
+2019-09-16 00:18:16.863  INFO 13780 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-09-16 00:18:17.030  INFO 13780 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-09-16 00:18:17.081  INFO 13780 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2019-09-16 00:18:17.165  INFO 13780 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.11.Final}
+2019-09-16 00:18:17.167  INFO 13780 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2019-09-16 00:18:17.392  INFO 13780 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2019-09-16 00:18:17.468  INFO 13780 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:18:17.538  INFO 13780 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.SQLiteDialect
+2019-09-16 00:18:17.562  INFO 13780 --- [main] o.h.e.j.e.i.LobCreatorBuilderImpl        : HHH000423: Disabling contextual LOB creation as JDBC driver reported JDBC version [2] less than 4
+2019-09-16 00:18:18.287  INFO 13780 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:18:18.786  INFO 13780 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:18:18.821  WARN 13780 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2019-09-16 00:18:19.031  INFO 13780 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6080 (http) with context path '/api'
+2019-09-16 00:18:19.033  INFO 13780 --- [main] com.tmb.ms.TmbMsApplication              : Started TmbMsApplication in 4.234 seconds (JVM running for 5.086)
+2019-09-16 00:18:19.533  INFO 13780 --- [http-nio-6080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-09-16 00:18:19.533  INFO 13780 --- [http-nio-6080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-09-16 00:18:19.540  INFO 13780 --- [http-nio-6080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
+2019-09-16 00:18:19.673  INFO 13780 --- [http-nio-6080-exec-2] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:18:19.772  INFO 13780 --- [http-nio-6080-exec-2] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:18:19.773  INFO 13780 --- [http-nio-6080-exec-2] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:18:19.898  INFO 13780 --- [http-nio-6080-exec-1] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:18:19.909  INFO 13780 --- [http-nio-6080-exec-1] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:18:19.911  INFO 13780 --- [http-nio-6080-exec-1] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:18:19.994  INFO 13780 --- [http-nio-6080-exec-3] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:18:19.999  INFO 13780 --- [http-nio-6080-exec-3] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:18:20.000  INFO 13780 --- [http-nio-6080-exec-3] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:18:20.092  INFO 13780 --- [http-nio-6080-exec-4] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:18:20.129  INFO 13780 --- [http-nio-6080-exec-4] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6d762e22, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@46479ebd, com.tmb.ms.entity.Item@1f2afb47], activities=[com.tmb.ms.entity.Activity@2569a5e8])
+2019-09-16 00:18:20.130  INFO 13780 --- [http-nio-6080-exec-4] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@6d762e22, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@46479ebd, com.tmb.ms.entity.Item@1f2afb47], activities=[com.tmb.ms.entity.Activity@2569a5e8])
+2019-09-16 00:18:55.862  INFO 13780 --- [http-nio-6080-exec-5] c.tmb.ms.controller.ActivityController   : CommonRequest(id=1)
+2019-09-16 00:18:55.867  INFO 13780 --- [http-nio-6080-exec-5] com.tmb.ms.service.ActivityServiceImpl   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:18:55.867  INFO 13780 --- [http-nio-6080-exec-5] c.tmb.ms.controller.ActivityController   : CommonResponse(statusCode=200, statusMessage=SUCCESS)
+2019-09-16 00:18:55.960  INFO 13780 --- [http-nio-6080-exec-6] c.tmb.ms.controller.CustomerController   : CommonRequest(id=1)
+2019-09-16 00:18:55.964  INFO 13780 --- [http-nio-6080-exec-6] com.tmb.ms.service.CustomerServiceImpl   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:18:55.964  INFO 13780 --- [http-nio-6080-exec-6] c.tmb.ms.controller.CustomerController   : CustomerResponse(id=1, name=Premkumar, secondaryName=T, date=2019-09-15 00:44:17.793, address=18 E, post=Thiruvanmiyur, pin=null, phone=null)
+2019-09-16 00:18:56.043  INFO 13780 --- [http-nio-6080-exec-7] com.tmb.ms.controller.ItemController     : CommonRequest(id=1)
+2019-09-16 00:18:56.046  INFO 13780 --- [http-nio-6080-exec-7] com.tmb.ms.service.ItemServiceImpl       : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:18:56.047  INFO 13780 --- [http-nio-6080-exec-7] com.tmb.ms.controller.ItemController     : ItemResponse(id=1, loanId=1, name=bracelet, quantity=1)
+2019-09-16 00:18:56.180  INFO 13780 --- [http-nio-6080-exec-8] com.tmb.ms.controller.LoanController     : CommonRequest(id=1)
+2019-09-16 00:18:56.187  INFO 13780 --- [http-nio-6080-exec-8] com.tmb.ms.service.LoanServiceImpl       : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@5d78ad41, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@28218db0, com.tmb.ms.entity.Item@24a6eb8d], activities=[com.tmb.ms.entity.Activity@8bf677c])
+2019-09-16 00:18:56.187  INFO 13780 --- [http-nio-6080-exec-8] com.tmb.ms.controller.LoanController     : LoanResponse(id=1, customer=com.tmb.ms.entity.Customer@5d78ad41, status=1, weight=11.5, comment=null, items=[com.tmb.ms.entity.Item@28218db0, com.tmb.ms.entity.Item@24a6eb8d], activities=[com.tmb.ms.entity.Activity@8bf677c])
+2019-09-16 00:20:33.056  INFO 13780 --- [RMI TCP Connection(11)-127.0.0.1] inMXBeanRegistrar$SpringApplicationAdmin : Application shutdown requested.
+2019-09-16 00:20:33.060  INFO 13780 --- [RMI TCP Connection(11)-127.0.0.1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2019-09-16 00:20:33.061  INFO 13780 --- [RMI TCP Connection(11)-127.0.0.1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2019-09-16 00:20:33.064  INFO 13780 --- [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2019-09-16 00:20:33.067  INFO 13780 --- [RMI TCP Connection(11)-127.0.0.1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

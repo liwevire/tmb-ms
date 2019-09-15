@@ -15,7 +15,6 @@ import com.tmb.ms.service.ActivityService;
 public class ActivityController {
 	@Autowired
 	private ActivityService activityService;
-	
 	private Logger logger = LoggerFactory.getLogger(ActivityController.class);
 	
 	@PostMapping("/activity/getById")

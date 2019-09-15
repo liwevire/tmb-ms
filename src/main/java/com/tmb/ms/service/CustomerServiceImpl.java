@@ -2,7 +2,11 @@ package com.tmb.ms.service;
 
 import java.util.Optional;
 
+import org.modelmapper.ConfigurationException;
+import org.modelmapper.MappingException;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,24 +22,43 @@ public class CustomerServiceImpl implements CustomerService {
 	@Autowired
 	private CustomerRepo customerRepo;
 	private ModelMapper mapper = new ModelMapper();
+	private Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
 	public CustomerResponse getbyId(CommonRequest request) {
 		CustomerResponse customerResponse = new CustomerResponse();
 		Optional<Customer> customerOp = null;
 		try {
 			customerOp = customerRepo.findById(request.getId());
+			if (customerOp != null && customerOp.isPresent()) {
+				Customer customer = customerOp.get();
+				customerResponse = mapper.map(customer, CustomerResponse.class);
+				customerResponse.setStatusCode(MsConstant.SUCCESS_CODE);
+				customerResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+			} else {
+				customerResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
+				customerResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG);
+			}
+		} catch (IllegalArgumentException iae) {
+			logger.error(iae.getMessage(), iae);
+			customerResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
+			customerResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
+		} catch (ConfigurationException ce) {
+			logger.error(ce.getMessage(), ce);
+			customerResponse.setStatusCode(MsConstant.MAPPER_CONFIG_ERR_CODE);
+			customerResponse.setStatusMessage(MsConstant.MAPPER_CONFIG_ERR_MSG + ":" + ce.getMessage());
+		} catch (MappingException me) {
+			logger.error(me.getMessage(), me);
+			customerResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
+			customerResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + me.getMessage());
 		} catch (Exception e) {
-			customerResponse.setStatusCode(MsConstant.DB_REPO_FAILURE_CODE);
-			customerResponse.setStatusMessage(MsConstant.DB_REPO_FAILURE_MSG + ":" + e.getMessage());
-		}
-		if (customerOp != null && customerOp.isPresent()) {
-			Customer customer = customerOp.get();
-			customerResponse = mapper.map(customer, CustomerResponse.class);
-			customerResponse.setStatusCode(MsConstant.SUCCESS_CODE);
-			customerResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
-		}else {
-			customerResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
-			customerResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG);
+			logger.error(e.getMessage(), e);
+			customerResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
+			customerResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
+		} finally {
+			if (customerResponse.getStatusCode() < 300)
+				logger.info(customerResponse.toString());
+			else
+				logger.error(customerResponse.toString());
 		}
 		return customerResponse;
 	}
