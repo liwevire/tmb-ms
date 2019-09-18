@@ -35,4 +35,12 @@ public class LoanController {
 		logger.info(loanResponse.toString());
 		return loanResponse;
 	}
+	
+	@PostMapping("/loan/update")
+	private CommonResponse update(@RequestBody Loan loan) {
+		logger.info(loan.toString());
+		LoanResponse loanResponse = loanService.updateLoan(loan);
+		logger.info(loanResponse.toString());
+		return loanResponse;
+	}
 }

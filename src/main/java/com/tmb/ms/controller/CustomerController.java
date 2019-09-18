@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.response.CustomerResponse;
+import com.tmb.ms.entity.Customer;
 import com.tmb.ms.service.CustomerService;
 
 @RestController
@@ -21,6 +22,22 @@ public class CustomerController {
 	private CustomerResponse get(@RequestBody CommonRequest request) {
 		logger.info(request.toString());
 		CustomerResponse customerResponse = customerService.getbyId(request);
+		logger.info(customerResponse.toString());
+		return customerResponse;
+	}
+	
+	@PostMapping("/customer/add")
+	private CustomerResponse add(@RequestBody Customer customer) {
+		logger.info(customer.toString());
+		CustomerResponse customerResponse = customerService.add(customer);
+		logger.info(customerResponse.toString());
+		return customerResponse;
+	}
+	
+	@PostMapping("/customer/update")
+	private CustomerResponse update(@RequestBody Customer customer) {
+		logger.info(customer.toString());
+		CustomerResponse customerResponse = customerService.update(customer);
 		logger.info(customerResponse.toString());
 		return customerResponse;
 	}

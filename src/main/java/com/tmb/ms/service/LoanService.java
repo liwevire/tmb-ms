@@ -7,4 +7,5 @@ import com.tmb.ms.entity.Loan;
 public interface LoanService {
 	public LoanResponse getbyId(CommonRequest request);
 	public LoanResponse addLoan(Loan loan);
+	public LoanResponse updateLoan(Loan loan);
 }

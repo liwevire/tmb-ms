@@ -1,6 +1,6 @@
 package com.tmb.ms.service;
 
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 import org.modelmapper.ConfigurationException;
 import org.modelmapper.MappingException;
@@ -26,33 +26,29 @@ public class ItemServiceImpl implements ItemService {
 
 	public ItemResponse getbyId(CommonRequest request) {
 		ItemResponse itemResponse = new ItemResponse();
-		Optional<Item> itemOp = null;
+		Item item = null;
 		try {
-			itemOp = itemRepo.findById(request.getId());
-			if (itemOp != null && itemOp.isPresent()) {
-				Item item = itemOp.get();
-				itemResponse = mapper.map(item, ItemResponse.class);
-				itemResponse.setStatusCode(MsConstant.SUCCESS_CODE);
-				itemResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
-			} else {
-				itemResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
-				itemResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG);
-			}
+			item = itemRepo.findById(request.getId()).get();
+			itemResponse = mapper.map(item, ItemResponse.class);
+			itemResponse.setStatusCode(MsConstant.SUCCESS_CODE);
+			itemResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+			logger.info(itemResponse.toString());
+		} catch (NoSuchElementException nse) {
+			itemResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
+			itemResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG + ":" + nse.getMessage());
+			logger.error(itemResponse.toString() + nse.getMessage(), nse);
 		} catch (IllegalArgumentException iae) {
-			logger.error(iae.getMessage(), iae);
 			itemResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
 			itemResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
-		} catch (ConfigurationException|MappingException ceme) {
-			logger.error(ceme.getMessage(), ceme);
+			logger.error(itemResponse.toString() + iae.getMessage(), iae);
+		} catch (ConfigurationException | MappingException ceme) {
 			itemResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
 			itemResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
+			logger.error(itemResponse.toString() + ceme.getMessage(), ceme);
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
 			itemResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
 			itemResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
-		} finally {
-			if (itemResponse.getStatusCode() < 300)
-				logger.info(itemResponse.toString());
+			logger.error(itemResponse.toString() + e.getMessage(), e);
 		}
 		return itemResponse;
 	}
