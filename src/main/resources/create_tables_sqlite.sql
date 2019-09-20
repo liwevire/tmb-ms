@@ -24,7 +24,7 @@ CREATE TABLE "item" (
 	"name"	varchar(100) NOT NULL,
 	"quantity"	INTEGER NOT NULL,
 	FOREIGN KEY("loan_id") REFERENCES "loan"("id")
-);
+); 
 
 CREATE TABLE "activity" (
 	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
