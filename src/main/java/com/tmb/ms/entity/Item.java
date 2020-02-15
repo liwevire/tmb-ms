@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -25,4 +27,34 @@ public class Item {
 	private long loanId;
 	private String name;
 	private String quantity;
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		if (!(o instanceof Item))
+			return false;
+		Item i = (Item) o;
+		return StringUtils.equals(name, i.getName()) && StringUtils.equals(quantity, i.getQuantity());
+	}
+
+	@Override
+	public int hashCode() {
+		int res = 6;
+		res = 31 * res + name.hashCode();
+		res = 31 * res + quantity.hashCode();
+		return res;
+	}
+
+	public Item(long id, long loanId, String name, String quantity) {
+		super();
+		this.id = id;
+		this.loanId = loanId;
+		this.name = name;
+		this.quantity = quantity;
+	}
+
+	public Item() {
+		super();
+	}
 }

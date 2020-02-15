@@ -1,6 +1,10 @@
 package com.tmb.ms.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import org.modelmapper.ConfigurationException;
 import org.modelmapper.MappingException;
@@ -12,9 +16,13 @@ import org.springframework.stereotype.Service;
 
 import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.response.LoanResponse;
+import com.tmb.ms.entity.Activity;
 import com.tmb.ms.entity.Customer;
+import com.tmb.ms.entity.Item;
 import com.tmb.ms.entity.Loan;
+import com.tmb.ms.repo.ActivityRepo;
 import com.tmb.ms.repo.CustomerRepo;
+import com.tmb.ms.repo.ItemRepo;
 import com.tmb.ms.repo.LoanRepo;
 import com.tmb.ms.util.MsConstant;
 
@@ -25,8 +33,23 @@ public class LoanServiceImpl implements LoanService {
 	private LoanRepo loanRepo;
 	@Autowired
 	private CustomerRepo customerRepo;
+	@Autowired
+	private ItemRepo itemRepo;
+	@Autowired
+	private ActivityRepo activityRepo;
 	private ModelMapper mapper = new ModelMapper();
 	private Logger logger = LoggerFactory.getLogger(LoanServiceImpl.class);
+
+	@Override
+	public List<Loan> get() {
+		List<Loan> loans = new ArrayList<Loan>();
+		try {
+			loans = loanRepo.findAll();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		return loans;
+	}
 
 	public LoanResponse getbyId(CommonRequest request) {
 		LoanResponse loanResponse = new LoanResponse();
@@ -63,12 +86,8 @@ public class LoanServiceImpl implements LoanService {
 		try {
 			if (loan.getCustomer() != null && loan.getCustomer().getId() != 0) {
 				Customer customer = (customerRepo.findById(loan.getCustomer().getId()).get());
-				customer.setAddress(loan.getCustomer().getAddress());
-				customer.setName(loan.getCustomer().getName());
-				customer.setPhone(loan.getCustomer().getPhone());
-				customer.setPin(loan.getCustomer().getPin());
-				customer.setPost(loan.getCustomer().getPost());
-				customer.setSecondaryName(loan.getCustomer().getSecondaryName());
+				customer.assign(loan.getCustomer());
+				loan.setCustomer(customer);
 			}
 			loan = loanRepo.save(loan);
 			loanResponse = mapper.map(loan, LoanResponse.class);
@@ -91,15 +110,39 @@ public class LoanServiceImpl implements LoanService {
 	public LoanResponse updateLoan(Loan loan) {
 		LoanResponse loanResponse = new LoanResponse();
 		try {
+			// prepare customer
 			if (loan.getCustomer() != null && loan.getCustomer().getId() != 0) {
 				Customer customer = (customerRepo.findById(loan.getCustomer().getId()).get());
-				customer.setAddress(loan.getCustomer().getAddress());
-				customer.setName(loan.getCustomer().getName());
-				customer.setPhone(loan.getCustomer().getPhone());
-				customer.setPin(loan.getCustomer().getPin());
-				customer.setPost(loan.getCustomer().getPost());
-				customer.setSecondaryName(loan.getCustomer().getSecondaryName());
+				customer.assign(loan.getCustomer());
+				loan.setCustomer(customer);
 			}
+			// prepare items
+			Set<Item> exstItems = itemRepo.findByLoanId(loan.getId());
+			Set<Item> reqItems = new HashSet<Item>();
+			reqItems.addAll(loan.getItems());
+			loan.getItems().clear();
+			for (Item exstItem : exstItems) {
+				if (reqItems.contains(exstItem)) {
+					loan.getItems().add(exstItem);
+					exstItems.remove(exstItem);
+				}
+			}
+			loan.getItems().addAll(reqItems);
+			//prepare activities
+			Set<Activity> exstActivities = activityRepo.findByLoanId(loan.getId());
+			Set<Activity> reqActivities = new HashSet<Activity>();
+			reqActivities.addAll(loan.getActivities());
+			loan.getActivities().clear();
+			for (Activity exstActivity : exstActivities) {
+				if (reqActivities.contains(exstActivity)) {
+					loan.getActivities().add(exstActivity);
+					exstActivities.remove(exstActivity);
+				}
+			}
+			loan.getActivities().addAll(reqActivities);
+
+			itemRepo.deleteAll(exstItems);
+			activityRepo.deleteAll(exstActivities);
 			loan = loanRepo.save(loan);
 			loanResponse = mapper.map(loan, LoanResponse.class);
 			loanResponse.setStatusCode(MsConstant.SUCCESS_CODE);

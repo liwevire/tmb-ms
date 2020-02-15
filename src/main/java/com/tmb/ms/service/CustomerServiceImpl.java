@@ -1,5 +1,7 @@
 package com.tmb.ms.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.modelmapper.ConfigurationException;
@@ -24,6 +26,17 @@ public class CustomerServiceImpl implements CustomerService {
 	private ModelMapper mapper = new ModelMapper();
 	private Logger logger = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
+	@Override
+	public List<Customer> get() {
+		List<Customer> customers = new ArrayList<Customer>();
+		try {
+			customers = customerRepo.findAll();
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		return customers;
+	}
+
 	public CustomerResponse getbyId(CommonRequest request) {
 		CustomerResponse customerResponse = new CustomerResponse();
 		Customer customer = null;
@@ -35,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
 			logger.info(customerResponse.toString());
 		} catch (NoSuchElementException nse) {
 			customerResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
-			customerResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG);
+			customerResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG + ":" + nse.getMessage());
 			logger.error(customerResponse.toString() + nse.getMessage(), nse);
 		} catch (IllegalArgumentException iae) {
 			customerResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
@@ -73,12 +86,27 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public CustomerResponse update(Customer customer) {
 		CustomerResponse customerResponse = new CustomerResponse();
+		Customer customerEntity;
 		try {
-			customer = customerRepo.save(customer);
-			customerResponse = mapper.map(customer, CustomerResponse.class);
+			customerEntity = customerRepo.findById(customer.getId()).get();
+			customerEntity = mapper.map(customer, Customer.class);
+			customerEntity = customerRepo.save(customerEntity);
+			customerResponse = mapper.map(customerEntity, CustomerResponse.class);
 			customerResponse.setStatusCode(MsConstant.SUCCESS_CODE);
 			customerResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
 			logger.info(customerResponse.toString());
+		} catch (NoSuchElementException nse) {
+			customerResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
+			customerResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG + ":" + nse.getMessage());
+			logger.error(customerResponse.toString() + nse.getMessage(), nse);
+		} catch (IllegalArgumentException iae) {
+			customerResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
+			customerResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
+			logger.error(customerResponse.toString() + iae.getMessage(), iae);
+		} catch (ConfigurationException | MappingException ceme) {
+			customerResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
+			customerResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
+			logger.error(customerResponse.toString() + ceme.getMessage(), ceme);
 		} catch (Exception e) {
 			customerResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
 			customerResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
@@ -86,4 +114,5 @@ public class CustomerServiceImpl implements CustomerService {
 		}
 		return customerResponse;
 	}
+
 }

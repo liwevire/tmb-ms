@@ -29,7 +29,7 @@ public class Loan {
 	@Column(name = "id", nullable = false, unique = true)
 	private long id;
 
-	@ManyToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
+	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.DETACH })
 	private Customer customer;
 
 	private String status;
@@ -40,7 +40,34 @@ public class Loan {
 	@JoinColumn(name = "loan_id")
 	private Set<Item> items = new HashSet<Item>();
 
-	@OneToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH })
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
 	private Set<Activity> activities = new HashSet<Activity>();
+	
+	@Override
+	public boolean equals(Object o) {
+		if (o == this)
+			return true;
+		if (!(o instanceof Customer))
+			return false;
+		Loan l = (Loan) o;
+		return customer.equals(l.getCustomer())
+				&& status.equalsIgnoreCase(l.getStatus()) 
+				&& weight.equalsIgnoreCase(l.getWeight())
+				&& comment.equalsIgnoreCase(l.getComment())
+				&& items.equals(l.getItems())
+				&& activities.equals(l.getActivities());
+	}
+
+	@Override
+	public int hashCode() {
+		int res = 4;
+		res = 31 * res + (customer == null ? 0 : customer.hashCode());
+		res = 31 * res + (items == null ? 0 : items.hashCode());
+		res = 31 * res + (activities == null ? 0 : activities.hashCode());
+		res = 31 * res + (status == null ? 0 : status.hashCode());
+		res = 31 * res + (weight == null ? 0 : weight.hashCode());
+		res = 31 * res + (comment == null ? 0 : comment.hashCode());
+		return res;
+	}
 }
