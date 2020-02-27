@@ -10,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.tmb.ms.dto.request.CommonRequest;
@@ -107,6 +108,35 @@ public class CustomerServiceImpl implements CustomerService {
 			customerResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
 			customerResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
 			logger.error(customerResponse.toString() + ceme.getMessage(), ceme);
+		} catch (Exception e) {
+			customerResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
+			customerResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
+			logger.error(customerResponse.toString() + e.getMessage(), e);
+		}
+		return customerResponse;
+	}
+
+	@Override
+	public CustomerResponse delete(long id) {
+		CustomerResponse customerResponse = new CustomerResponse();
+		Customer customerEntity;
+		try {
+			customerEntity = customerRepo.findById(id).get();
+			customerRepo.delete(customerEntity);
+			customerResponse.setStatusCode(MsConstant.SUCCESS_CODE);
+			customerResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+		} catch (NoSuchElementException nse) {
+			customerResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
+			customerResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG + ":" + nse.getMessage());
+			logger.error(customerResponse.toString() + nse.getMessage(), nse);
+		} catch (IllegalArgumentException iae) {
+			customerResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
+			customerResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
+			logger.error(customerResponse.toString() + iae.getMessage(), iae);
+		} catch (EmptyResultDataAccessException erdae) {
+			customerResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
+			customerResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG + ":" + erdae.getMessage());
+			logger.error(customerResponse.toString() + erdae.getMessage(), erdae);
 		} catch (Exception e) {
 			customerResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
 			customerResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());

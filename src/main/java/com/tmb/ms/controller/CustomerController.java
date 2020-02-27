@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tmb.ms.dto.request.CommonRequest;
@@ -39,7 +42,7 @@ public class CustomerController {
 		return customerResponse;
 	}
 	
-	@PostMapping("/customer/add")
+	@PostMapping("/customer/update")
 	private CustomerResponse add(@RequestBody Customer customer) {
 		logger.info(customer.toString());
 		CustomerResponse customerResponse = customerService.add(customer);
@@ -47,10 +50,18 @@ public class CustomerController {
 		return customerResponse;
 	}
 	
-	@PostMapping("/customer/update")
+	@PutMapping("/customer/update")
 	private CustomerResponse update(@RequestBody Customer customer) {
 		logger.info(customer.toString());
 		CustomerResponse customerResponse = customerService.update(customer);
+		logger.info(customerResponse.toString());
+		return customerResponse;
+	}
+	
+	@DeleteMapping("/customer/delete")
+	private CustomerResponse delete(@RequestParam long id) {
+		logger.info(Long.toString(id));
+		CustomerResponse customerResponse = customerService.delete(id);
 		logger.info(customerResponse.toString());
 		return customerResponse;
 	}

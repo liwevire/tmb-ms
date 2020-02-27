@@ -12,4 +12,5 @@ public interface CustomerService {
 	public CustomerResponse getbyId(CommonRequest request);
 	public CustomerResponse add(Customer customer);
 	public CustomerResponse update(Customer customer);
+	public CustomerResponse delete(long id);
 }

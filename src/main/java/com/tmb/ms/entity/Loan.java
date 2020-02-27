@@ -29,21 +29,21 @@ public class Loan {
 	@Column(name = "id", nullable = false, unique = true)
 	private long id;
 
-	@ManyToOne(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.DETACH })
+	@ManyToOne(cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
 	private Customer customer;
 
 	private String status;
 	private String weight;
 	private String comment;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
 	private Set<Item> items = new HashSet<Item>();
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
 	private Set<Activity> activities = new HashSet<Activity>();
-	
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == this)
@@ -51,12 +51,9 @@ public class Loan {
 		if (!(o instanceof Customer))
 			return false;
 		Loan l = (Loan) o;
-		return customer.equals(l.getCustomer())
-				&& status.equalsIgnoreCase(l.getStatus()) 
-				&& weight.equalsIgnoreCase(l.getWeight())
-				&& comment.equalsIgnoreCase(l.getComment())
-				&& items.equals(l.getItems())
-				&& activities.equals(l.getActivities());
+		return customer.equals(l.getCustomer()) && status.equalsIgnoreCase(l.getStatus())
+				&& weight.equalsIgnoreCase(l.getWeight()) && comment.equalsIgnoreCase(l.getComment())
+				&& items.equals(l.getItems()) && activities.equals(l.getActivities());
 	}
 
 	@Override

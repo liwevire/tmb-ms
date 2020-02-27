@@ -42,7 +42,7 @@ public class LoanController {
 		return loanResponse;
 	}
 
-	@PostMapping("/loan/add")
+	@PostMapping("/loan/update")
 	private CommonResponse add(@RequestBody Loan loan) {
 		logger.info(loan.toString());
 		LoanResponse loanResponse = loanService.addLoan(loan);
