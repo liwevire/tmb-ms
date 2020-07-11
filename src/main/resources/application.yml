@@ -11,7 +11,7 @@ spring:
     hibernate.ddl-auto: none
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.SQLiteDialect
 logging:
   file: ./logs/tmb-ms.log
   level:
