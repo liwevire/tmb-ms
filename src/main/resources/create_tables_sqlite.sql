@@ -27,10 +27,11 @@ CREATE TABLE "item" (
 ); 
 
 CREATE TABLE "activity" (
-	"id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"id"	INTEGER NOT NULL,
 	"loan_id"	INTEGER NOT NULL,
 	"date"	datetime NOT NULL,
-	"category"	INTEGER NOT NULL,
+	"category"	varchar(100) NOT NULL,
 	"amount"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT),
 	FOREIGN KEY("loan_id") REFERENCES "loan"("id")
 );

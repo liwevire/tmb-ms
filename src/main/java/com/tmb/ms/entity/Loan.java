@@ -1,11 +1,11 @@
 package com.tmb.ms.entity;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,13 +36,13 @@ public class Loan {
 	private String weight;
 	private String comment;
 
-	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
-	private Set<Item> items = new HashSet<Item>();
+	private Set<Item> items;
 
-	@OneToMany(cascade = { CascadeType.REFRESH, CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	@JoinColumn(name = "loan_id")
-	private Set<Activity> activities = new HashSet<Activity>();
+	private Set<Activity> activities;
 
 	@Override
 	public boolean equals(Object o) {
@@ -58,13 +58,13 @@ public class Loan {
 
 	@Override
 	public int hashCode() {
-		int res = 4;
-		res = 31 * res + (customer == null ? 0 : customer.hashCode());
-		res = 31 * res + (items == null ? 0 : items.hashCode());
-		res = 31 * res + (activities == null ? 0 : activities.hashCode());
-		res = 31 * res + (status == null ? 0 : status.hashCode());
-		res = 31 * res + (weight == null ? 0 : weight.hashCode());
-		res = 31 * res + (comment == null ? 0 : comment.hashCode());
-		return res;
+		int hash = 4;
+		hash = 31 * hash + (customer == null ? 0 : customer.hashCode());
+		hash = 31 * hash + (items == null ? 0 : items.hashCode());
+		hash = 31 * hash + (activities == null ? 0 : activities.hashCode());
+		hash = 31 * hash + (status == null ? 0 : status.hashCode());
+		hash = 31 * hash + (weight == null ? 0 : weight.hashCode());
+		hash = 31 * hash + (comment == null ? 0 : comment.hashCode());
+		return hash;
 	}
 }

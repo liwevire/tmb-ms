@@ -40,10 +40,10 @@ public class Item {
 
 	@Override
 	public int hashCode() {
-		int res = 6;
-		res = 31 * res + name.hashCode();
-		res = 31 * res + quantity.hashCode();
-		return res;
+		int hash = 6;
+		hash = 31 * hash + (name == null ? 0 : name.hashCode());
+		hash = 31 * hash + (quantity == null ? 0 : quantity.hashCode());
+		return hash;
 	}
 
 	public Item(long id, long loanId, String name, String quantity) {

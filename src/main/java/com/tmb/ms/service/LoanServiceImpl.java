@@ -24,6 +24,7 @@ import com.tmb.ms.repo.ActivityRepo;
 import com.tmb.ms.repo.CustomerRepo;
 import com.tmb.ms.repo.ItemRepo;
 import com.tmb.ms.repo.LoanRepo;
+import com.tmb.ms.util.LoanUtil;
 import com.tmb.ms.util.MsConstant;
 
 @Service
@@ -37,6 +38,8 @@ public class LoanServiceImpl implements LoanService {
 	private ItemRepo itemRepo;
 	@Autowired
 	private ActivityRepo activityRepo;
+	@Autowired
+	private LoanUtil loanUtil;
 	private ModelMapper mapper = new ModelMapper();
 	private Logger logger = LoggerFactory.getLogger(LoanServiceImpl.class);
 
@@ -118,32 +121,16 @@ public class LoanServiceImpl implements LoanService {
 			}
 			// prepare items
 			Set<Item> exstItems = itemRepo.findByLoanId(loan.getId());
-			Set<Item> reqItems = new HashSet<Item>();
-			reqItems.addAll(loan.getItems());
-			loan.getItems().clear();
-			for (Item exstItem : exstItems) {
-				if (reqItems.contains(exstItem)) {
-					loan.getItems().add(exstItem);
-					exstItems.remove(exstItem);
-				}
-			}
-			loan.getItems().addAll(reqItems);
+			loan.setItems(loanUtil.prepareItems(exstItems, loan.getItems(), loan.getId()));
 			//prepare activities
 			Set<Activity> exstActivities = activityRepo.findByLoanId(loan.getId());
-			Set<Activity> reqActivities = new HashSet<Activity>();
-			reqActivities.addAll(loan.getActivities());
-			loan.getActivities().clear();
-			for (Activity exstActivity : exstActivities) {
-				if (reqActivities.contains(exstActivity)) {
-					loan.getActivities().add(exstActivity);
-					exstActivities.remove(exstActivity);
-				}
-			}
-			loan.getActivities().addAll(reqActivities);
+			loan.setActivities(loanUtil.prepareActivities(exstActivities, loan.getActivities(), loan.getId()));
 
+			//db interactions
 			itemRepo.deleteAll(exstItems);
 			activityRepo.deleteAll(exstActivities);
 			loan = loanRepo.save(loan);
+			
 			loanResponse = mapper.map(loan, LoanResponse.class);
 			loanResponse.setStatusCode(MsConstant.SUCCESS_CODE);
 			loanResponse.setStatusMessage(MsConstant.SUCCESS_MSG);

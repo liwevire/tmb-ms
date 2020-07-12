@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.tmb.ms.entity.Item;
-import com.tmb.ms.entity.Loan;
 
 public class Test {
 	public static void main(String[] args) {

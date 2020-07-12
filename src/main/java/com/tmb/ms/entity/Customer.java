@@ -75,15 +75,15 @@ public class Customer {
 
 	@Override
 	public int hashCode() {
-		int res = 4;
-		res = 31 * res + (name == null ? 0 : name.hashCode());
-		res = 31 * res + (secondaryName == null ? 0 : secondaryName.hashCode());
-		res = 31 * res + (date == null ? 0 : date.hashCode());
-		res = 31 * res + (address == null ? 0 : address.hashCode());
-		res = 31 * res + (post == null ? 0 : post.hashCode());
-		res = 31 * res + (pin == null ? 0 : pin.hashCode());
-		res = 31 * res + (phone == null ? 0 : phone.hashCode());
-		return res;
+		int hash = 4;
+		hash = 31 * hash + (name == null ? 0 : name.hashCode());
+		hash = 31 * hash + (secondaryName == null ? 0 : secondaryName.hashCode());
+		hash = 31 * hash + (date == null ? 0 : date.hashCode());
+		hash = 31 * hash + (address == null ? 0 : address.hashCode());
+		hash = 31 * hash + (post == null ? 0 : post.hashCode());
+		hash = 31 * hash + (pin == null ? 0 : pin.hashCode());
+		hash = 31 * hash + (phone == null ? 0 : phone.hashCode());
+		return hash;
 	}
 
 }

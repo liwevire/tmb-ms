@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.StringUtils;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,7 +28,7 @@ public class Activity {
 	@Column(name = "loan_id", nullable = false)
 	private long loanId;
 	private double amount;
-	private int category;
+	private String category;
 	private Date date = new Date();
 
 	@Override
@@ -36,16 +38,16 @@ public class Activity {
 		if (!(o instanceof Activity))
 			return false;
 		Activity a = (Activity) o;
-		return date.compareTo(a.getDate()) == 0 && category == a.getCategory() && amount == a.getAmount();
+		return date.compareTo(a.getDate()) == 0 && StringUtils.equals(category, a.getCategory()) && amount == a.getAmount();
 	}
 
 	@Override
 	public int hashCode() {
-		int res = 6;
-		res = 31 * res + (date == null ? 0 : date.hashCode());
-		res = 31 * res + category;
+		int hash = 6;
+		hash = 31 * hash + (date == null ? 0 : date.hashCode());
+		hash = 31 * hash + (category == null ? 0 : category.hashCode());
 		long am = Double.doubleToLongBits(amount);
-		res = 31 * res + (int) (am ^ (am >>> 32));
-		return res;
+		hash = 31 * hash + (int) (am ^ (am >>> 32));
+		return hash;
 	}
 }
