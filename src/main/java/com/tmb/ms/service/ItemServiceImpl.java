@@ -14,7 +14,7 @@ import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.response.ItemResponse;
 import com.tmb.ms.entity.Item;
 import com.tmb.ms.repo.ItemRepo;
-import com.tmb.ms.util.MsConstant;
+import com.tmb.ms.util.TmbMsErrorCode;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -30,24 +30,24 @@ public class ItemServiceImpl implements ItemService {
 		try {
 			item = itemRepo.findById(request.getId()).get();
 			itemResponse = mapper.map(item, ItemResponse.class);
-			itemResponse.setStatusCode(MsConstant.SUCCESS_CODE);
-			itemResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+			itemResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
+			itemResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 			logger.info(itemResponse.toString());
 		} catch (NoSuchElementException nse) {
-			itemResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
-			itemResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG + ":" + nse.getMessage());
+			itemResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			itemResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());
 			logger.error(itemResponse.toString() + nse.getMessage(), nse);
 		} catch (IllegalArgumentException iae) {
-			itemResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
-			itemResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
+			itemResponse.setStatusCode(TmbMsErrorCode.VALIDATION_ERR.getErrCode());
+			itemResponse.setStatusMessage(TmbMsErrorCode.VALIDATION_ERR.getErrMessage() + ":" + iae.getMessage());
 			logger.error(itemResponse.toString() + iae.getMessage(), iae);
 		} catch (ConfigurationException | MappingException ceme) {
-			itemResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
-			itemResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
+			itemResponse.setStatusCode(TmbMsErrorCode.MAPPER_ERR.getErrCode());
+			itemResponse.setStatusMessage(TmbMsErrorCode.MAPPER_ERR.getErrMessage() + ":" + ceme.getMessage());
 			logger.error(itemResponse.toString() + ceme.getMessage(), ceme);
 		} catch (Exception e) {
-			itemResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
-			itemResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
+			itemResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
+			itemResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
 			logger.error(itemResponse.toString() + e.getMessage(), e);
 		}
 		return itemResponse;

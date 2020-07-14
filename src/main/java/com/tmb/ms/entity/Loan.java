@@ -29,7 +29,7 @@ public class Loan {
 	@Column(name = "id", nullable = false, unique = true)
 	private long id;
 
-	@ManyToOne(cascade = { CascadeType.REMOVE, CascadeType.PERSIST })
+	@ManyToOne(cascade = {  CascadeType.PERSIST })
 	private Customer customer;
 
 	private String status;
