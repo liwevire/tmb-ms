@@ -1,7 +1,6 @@
 package com.tmb.ms.service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -25,7 +24,7 @@ import com.tmb.ms.repo.CustomerRepo;
 import com.tmb.ms.repo.ItemRepo;
 import com.tmb.ms.repo.LoanRepo;
 import com.tmb.ms.util.LoanUtil;
-import com.tmb.ms.util.MsConstant;
+import com.tmb.ms.util.TmbMsErrorCode;
 
 @Service
 public class LoanServiceImpl implements LoanService {
@@ -60,24 +59,24 @@ public class LoanServiceImpl implements LoanService {
 		try {
 			loan = loanRepo.findById(request.getId()).get();
 			loanResponse = mapper.map(loan, LoanResponse.class);
-			loanResponse.setStatusCode(MsConstant.SUCCESS_CODE);
-			loanResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+			loanResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 			logger.info(loanResponse.toString());
 		} catch (NoSuchElementException nse) {
-			loanResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
-			loanResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG + ":" + nse.getMessage());
+			loanResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());
 			logger.error(loanResponse.toString() + nse.getMessage(), nse);
 		} catch (IllegalArgumentException iae) {
-			loanResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
-			loanResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
+			loanResponse.setStatusCode(TmbMsErrorCode.VALIDATION_ERR.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.VALIDATION_ERR.getErrMessage() + ":" + iae.getMessage());
 			logger.error(loanResponse.toString() + iae.getMessage(), iae);
 		} catch (ConfigurationException | MappingException ceme) {
-			loanResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
-			loanResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
+			loanResponse.setStatusCode(TmbMsErrorCode.MAPPER_ERR.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.MAPPER_ERR.getErrMessage() + ":" + ceme.getMessage());
 			logger.error(loanResponse.toString() + ceme.getMessage(), ceme);
 		} catch (Exception e) {
-			loanResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
-			loanResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
+			loanResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
 			logger.error(loanResponse.toString() + e.getMessage(), e);
 		}
 		return loanResponse;
@@ -94,16 +93,16 @@ public class LoanServiceImpl implements LoanService {
 			}
 			loan = loanRepo.save(loan);
 			loanResponse = mapper.map(loan, LoanResponse.class);
-			loanResponse.setStatusCode(MsConstant.SUCCESS_CODE);
-			loanResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+			loanResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 			logger.info(loanResponse.toString());
 		} catch (NoSuchElementException nse) {
-			loanResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
-			loanResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG);
+			loanResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage());
 			logger.error(loanResponse.toString() + nse.getMessage(), nse);
 		} catch (Exception e) {
-			loanResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
-			loanResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
+			loanResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
 			logger.error(loanResponse.toString() + e.getMessage(), e);
 		}
 		return loanResponse;
@@ -132,16 +131,16 @@ public class LoanServiceImpl implements LoanService {
 			loan = loanRepo.save(loan);
 			
 			loanResponse = mapper.map(loan, LoanResponse.class);
-			loanResponse.setStatusCode(MsConstant.SUCCESS_CODE);
-			loanResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+			loanResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 			logger.info(loanResponse.toString());
 		} catch (NoSuchElementException nse) {
-			loanResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
-			loanResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG);
+			loanResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage());
 			logger.error(loanResponse.toString() + nse.getMessage(), nse);
 		} catch (Exception e) {
-			loanResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
-			loanResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
+			loanResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
 			logger.error(loanResponse.toString() + e.getMessage(), e);
 		}
 		return loanResponse;

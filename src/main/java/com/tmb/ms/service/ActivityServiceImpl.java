@@ -14,7 +14,7 @@ import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.response.ActivityResponse;
 import com.tmb.ms.entity.Activity;
 import com.tmb.ms.repo.ActivityRepo;
-import com.tmb.ms.util.MsConstant;
+import com.tmb.ms.util.TmbMsErrorCode;
 
 @Service
 public class ActivityServiceImpl implements ActivityService {
@@ -30,24 +30,24 @@ public class ActivityServiceImpl implements ActivityService {
 		try {
 			activity = activityRepo.findById(request.getId()).get();
 			activityResponse = mapper.map(activity, ActivityResponse.class);
-			activityResponse.setStatusCode(MsConstant.SUCCESS_CODE);
-			activityResponse.setStatusMessage(MsConstant.SUCCESS_MSG);
+			activityResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 			logger.info(activityResponse.toString());
 		} catch (NoSuchElementException nse) {
-			activityResponse.setStatusCode(MsConstant.DB_NO_RECORD_CODE);
-			activityResponse.setStatusMessage(MsConstant.DB_NO_RECORD_MSG + ":" + nse.getMessage());
+			activityResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());
 			logger.error(activityResponse.toString() + nse.getMessage(), nse);
 		} catch (IllegalArgumentException iae) {
-			activityResponse.setStatusCode(MsConstant.VALIDATION_ERR_CODE);
-			activityResponse.setStatusMessage(MsConstant.VALIDATION_ERR_MSG + ":" + iae.getMessage());
+			activityResponse.setStatusCode(TmbMsErrorCode.VALIDATION_ERR.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.VALIDATION_ERR.getErrMessage() + ":" + iae.getMessage());
 			logger.error(activityResponse.toString() + iae.getMessage(), iae);
 		} catch (ConfigurationException | MappingException ceme) {
-			activityResponse.setStatusCode(MsConstant.MAPPER_ERR_CODE);
-			activityResponse.setStatusMessage(MsConstant.MAPPER_ERR_MSG + ":" + ceme.getMessage());
+			activityResponse.setStatusCode(TmbMsErrorCode.MAPPER_ERR.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.MAPPER_ERR.getErrMessage() + ":" + ceme.getMessage());
 			logger.error(activityResponse.toString() + ceme.getMessage(), ceme);
 		} catch (Exception e) {
-			activityResponse.setStatusCode(MsConstant.UNKNOWN_ERR_CODE);
-			activityResponse.setStatusMessage(MsConstant.UNKNOWN_ERR_MSG + ":" + e.getMessage());
+			activityResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
 			logger.error(activityResponse.toString() + e.getMessage(), e);
 		}
 		return activityResponse;
