@@ -7,4 +7,4 @@ Microservice layer of web application for a Pawn shop.
 
 SQLite is used for database. Database file is included in the project folder and no extra configuration needed.
 ## Test
-Postman is used for testing the API and access my api collection [here](https://www.getpostman.com/collections/244c9bee74a64dd73e7f)
+Postman is used for testing the API and my api collection is available [here](https://www.getpostman.com/collections/244c9bee74a64dd73e7f)
