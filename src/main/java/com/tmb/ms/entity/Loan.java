@@ -36,12 +36,12 @@ public class Loan {
 	private String weight;
 	private String comment;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "loan_id")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "loan_id", nullable = false, insertable = false, updatable = false)
 	private Set<Item> items;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-	@JoinColumn(name = "loan_id")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "loan_id", nullable = false, insertable = false, updatable = false)
 	private Set<Activity> activities;
 
 	@Override

@@ -153,7 +153,7 @@ public class CustomerServiceImpl implements CustomerService {
 		} catch (TmbMsException tme) {
 			customerResponse.setStatusCode(tme.getErrCode().getErrCode());
 			customerResponse.setStatusMessage(tme.getErrMessage());
-		}catch (Exception e) {
+		} catch (Exception e) {
 			customerResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
 			customerResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
 			logger.error(customerResponse.toString() + e.getMessage(), e);

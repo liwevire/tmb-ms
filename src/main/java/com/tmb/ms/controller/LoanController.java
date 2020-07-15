@@ -7,10 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tmb.ms.dto.request.CommonRequest;
@@ -45,7 +47,7 @@ public class LoanController {
 	@PostMapping("/loan/update")
 	private CommonResponse add(@RequestBody Loan loan) {
 		logger.info(loan.toString());
-		LoanResponse loanResponse = loanService.addLoan(loan);
+		LoanResponse loanResponse = loanService.add(loan);
 		logger.info(loanResponse.toString());
 		return loanResponse;
 	}
@@ -53,7 +55,15 @@ public class LoanController {
 	@PutMapping("/loan/update")
 	private CommonResponse update(@RequestBody Loan loan) {
 		logger.info(loan.toString());
-		LoanResponse loanResponse = loanService.updateLoan(loan);
+		LoanResponse loanResponse = loanService.update(loan);
+		logger.info(loanResponse.toString());
+		return loanResponse;
+	}
+	
+	@DeleteMapping("/loan/delete")
+	private LoanResponse delete(@RequestParam long id) {
+		logger.info(Long.toString(id));
+		LoanResponse loanResponse = loanService.delete(id);
 		logger.info(loanResponse.toString());
 		return loanResponse;
 	}

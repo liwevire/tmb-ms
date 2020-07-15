@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.tmb.ms.dto.request.CommonRequest;
@@ -83,7 +84,7 @@ public class LoanServiceImpl implements LoanService {
 	}
 
 	@Override
-	public LoanResponse addLoan(Loan loan) {
+	public LoanResponse add(Loan loan) {
 		LoanResponse loanResponse = new LoanResponse();
 		try {
 			if (loan.getCustomer() != null && loan.getCustomer().getId() != 0) {
@@ -109,7 +110,7 @@ public class LoanServiceImpl implements LoanService {
 	}
 
 	@Override
-	public LoanResponse updateLoan(Loan loan) {
+	public LoanResponse update(Loan loan) {
 		LoanResponse loanResponse = new LoanResponse();
 		try {
 			// prepare customer
@@ -121,15 +122,14 @@ public class LoanServiceImpl implements LoanService {
 			// prepare items
 			Set<Item> exstItems = itemRepo.findByLoanId(loan.getId());
 			loan.setItems(loanUtil.prepareItems(exstItems, loan.getItems(), loan.getId()));
-			//prepare activities
+			// prepare activities
 			Set<Activity> exstActivities = activityRepo.findByLoanId(loan.getId());
 			loan.setActivities(loanUtil.prepareActivities(exstActivities, loan.getActivities(), loan.getId()));
 
-			//db interactions
+			// db interactions
 			itemRepo.deleteAll(exstItems);
 			activityRepo.deleteAll(exstActivities);
 			loan = loanRepo.save(loan);
-			
 			loanResponse = mapper.map(loan, LoanResponse.class);
 			loanResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			loanResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
@@ -146,4 +146,32 @@ public class LoanServiceImpl implements LoanService {
 		return loanResponse;
 	}
 
+	@Override
+	public LoanResponse delete(long id) {
+		LoanResponse loanResponse = new LoanResponse();
+		try {
+//			activityRepo
+//			itemRepo
+			loanRepo.deleteById(id);
+			loanResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
+		} catch (NoSuchElementException nse) {
+			loanResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());
+			logger.error(loanResponse.toString() + nse.getMessage(), nse);
+		} catch (IllegalArgumentException iae) {
+			loanResponse.setStatusCode(TmbMsErrorCode.VALIDATION_ERR.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.VALIDATION_ERR.getErrMessage() + ":" + iae.getMessage());
+			logger.error(loanResponse.toString() + iae.getMessage(), iae);
+		} catch (EmptyResultDataAccessException erdae) {
+			loanResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + erdae.getMessage());
+			logger.error(loanResponse.toString() + erdae.getMessage(), erdae);
+		} catch (Exception e) {
+			loanResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
+			loanResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
+			logger.error(loanResponse.toString() + e.getMessage(), e);
+		}
+		return loanResponse;
+	}
 }
