@@ -5,4 +5,5 @@ import com.tmb.ms.dto.response.ItemResponse;
 
 public interface ItemService {
 	public ItemResponse getbyId(CommonRequest request);
+	public ItemResponse delete(long id);
 }

@@ -3,14 +3,23 @@ package com.tmb.ms.util;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tmb.ms.entity.Activity;
 import com.tmb.ms.entity.Item;
+import com.tmb.ms.repo.ActivityRepo;
+import com.tmb.ms.repo.ItemRepo;
 
 @Service
 public class LoanUtil {
-	public Set<Item> prepareItems(Set<Item> exstItems, Set<Item> reqItems, long id) {
+
+	@Autowired
+	ItemRepo itemRepo;
+	@Autowired
+	ActivityRepo activityRepo;
+
+	public Set<Item> prepareItems(Set<Item> exstItems, Set<Item> reqItems, long id) throws Exception {
 		if (exstItems == null)
 			if (reqItems == null)
 				return null;
@@ -25,7 +34,8 @@ public class LoanUtil {
 					if (reqItems.contains(exstItem)) {
 						resItems.add(exstItem);
 						exstItems.remove(exstItem);
-					}
+					} else
+						itemRepo.deleteById(exstItem.getId());
 				}
 				prepareItems(reqItems, id);
 				resItems.addAll(reqItems);
@@ -34,7 +44,7 @@ public class LoanUtil {
 		}
 	}
 
-	private Set<Item> prepareItems(Set<Item> items, long id) {
+	public Set<Item> prepareItems(Set<Item> items, long id) throws Exception {
 		for (Item item : items)
 			item.setLoanId(id);
 		return items;
@@ -54,7 +64,8 @@ public class LoanUtil {
 				if (reqActivities.contains(exstActivity)) {
 					resActivities.add(exstActivity);
 					exstActivities.remove(exstActivity);
-				}
+				} else
+					activityRepo.deleteById(exstActivity.getId());
 			}
 			prepareActivities(reqActivities, id);
 			resActivities.addAll(reqActivities);
@@ -62,7 +73,7 @@ public class LoanUtil {
 		}
 	}
 
-	private Set<Activity> prepareActivities(Set<Activity> activities, long id) {
+	public Set<Activity> prepareActivities(Set<Activity> activities, long id) {
 		for (Activity activity : activities)
 			activity.setLoanId(id);
 		return activities;

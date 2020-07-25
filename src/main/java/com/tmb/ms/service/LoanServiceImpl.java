@@ -150,8 +150,11 @@ public class LoanServiceImpl implements LoanService {
 	public LoanResponse delete(long id) {
 		LoanResponse loanResponse = new LoanResponse();
 		try {
-//			activityRepo
-//			itemRepo
+			Set<Item> exstItems = itemRepo.findByLoanId(id);
+			Set<Activity> exstActivities = activityRepo.findByLoanId(id);
+			// db interactions
+			itemRepo.deleteAll(exstItems);
+			activityRepo.deleteAll(exstActivities);
 			loanRepo.deleteById(id);
 			loanResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			loanResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());

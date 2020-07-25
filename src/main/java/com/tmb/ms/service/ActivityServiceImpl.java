@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.tmb.ms.dto.request.CommonRequest;
@@ -52,5 +53,29 @@ public class ActivityServiceImpl implements ActivityService {
 		}
 		return activityResponse;
 	}
-
+	public ActivityResponse delete(long id) {
+		ActivityResponse activityResponse = new ActivityResponse();
+		try {
+			activityRepo.deleteById(id);
+			activityResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
+		} catch (NoSuchElementException nse) {
+			activityResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());
+			logger.error(activityResponse.toString() + nse.getMessage(), nse);
+		} catch (IllegalArgumentException iae) {
+			activityResponse.setStatusCode(TmbMsErrorCode.VALIDATION_ERR.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.VALIDATION_ERR.getErrMessage() + ":" + iae.getMessage());
+			logger.error(activityResponse.toString() + iae.getMessage(), iae);
+		} catch (EmptyResultDataAccessException erdae) {
+			activityResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + erdae.getMessage());
+			logger.error(activityResponse.toString() + erdae.getMessage(), erdae);
+		} catch (Exception e) {
+			activityResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
+			activityResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
+			logger.error(activityResponse.toString() + e.getMessage(), e);
+		}
+		return activityResponse;
+	}
 }
