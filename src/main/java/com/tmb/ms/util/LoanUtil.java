@@ -30,14 +30,15 @@ public class LoanUtil {
 				return exstItems;
 			else {
 				Set<Item> resItems = new HashSet<Item>();
+				Set<Item> selectedItems = new HashSet<Item>();
 				for (Item exstItem : exstItems) {
 					if (reqItems.contains(exstItem)) {
 						resItems.add(exstItem);
-						exstItems.remove(exstItem);
-					} else
-						itemRepo.deleteById(exstItem.getId());
+						selectedItems.add(exstItem);
+					}
 				}
 				prepareItems(reqItems, id);
+				exstItems.removeAll(selectedItems);
 				resItems.addAll(reqItems);
 				return resItems;
 			}
@@ -60,14 +61,15 @@ public class LoanUtil {
 			return exstActivities;
 		else {
 			Set<Activity> resActivities = new HashSet<Activity>();
+			Set<Activity> selectedActivities = new HashSet<Activity>();
 			for (Activity exstActivity : exstActivities) {
 				if (reqActivities.contains(exstActivity)) {
 					resActivities.add(exstActivity);
-					exstActivities.remove(exstActivity);
-				} else
-					activityRepo.deleteById(exstActivity.getId());
+					selectedActivities.add(exstActivity);
+				} 
 			}
 			prepareActivities(reqActivities, id);
+			exstActivities.removeAll(selectedActivities);
 			resActivities.addAll(reqActivities);
 			return resActivities;
 		}
