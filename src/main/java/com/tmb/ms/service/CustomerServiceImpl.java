@@ -3,7 +3,6 @@ package com.tmb.ms.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ConfigurationException;
@@ -96,9 +95,7 @@ public class CustomerServiceImpl implements CustomerService {
 		CustomerResponse customerResponse = new CustomerResponse();
 		Customer customerEntity;
 		try {
-			customerEntity = customerRepo.findById(customer.getId()).get();
-			customerEntity = mapper.map(customer, Customer.class);
-			customerEntity = customerRepo.save(customerEntity);
+			customerEntity = customerRepo.save(customer);
 			customerResponse = mapper.map(customerEntity, CustomerResponse.class);
 			customerResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			customerResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
@@ -129,11 +126,11 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer customerEntity;
 		try {
 			customerEntity = customerRepo.findById(id).get();
-			Set<Loan> loans = loanRepo.findByCustomer(customerEntity);
+			List<Loan> loans = loanRepo.findByCustomer(customerEntity);
 			if (loans.isEmpty())
 				customerRepo.delete(customerEntity);
 			else {
-				 throw new TmbMsException(TmbMsErrorCode.DB_CONSTRIANT, "Delete existing loans for this customer. Loans are"
+				 throw new TmbMsException(TmbMsErrorCode.DB_CONSTRIANT, "First delete the loans of this customer. Loans IDs are"
 						 + loans.stream().map(loan -> loan.getId()).collect(Collectors.toList()).toString());
 			}
 			customerResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());

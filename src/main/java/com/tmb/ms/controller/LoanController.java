@@ -43,6 +43,14 @@ public class LoanController {
 		logger.info(loanResponse.toString());
 		return loanResponse;
 	}
+	
+	@PostMapping("/loan/getByCustomerId")
+	private List<Loan> getByCustomerId(@RequestBody CommonRequest request) {
+		logger.info(request.toString());
+		List<Loan> loans = loanService.getbyCustId(request);
+		logger.info(loans.toString());
+		return loans;
+	}
 
 	@PostMapping("/loan/update")
 	private CommonResponse add(@RequestBody Loan loan) {
