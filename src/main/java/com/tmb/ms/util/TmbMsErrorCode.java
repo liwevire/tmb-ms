@@ -12,6 +12,8 @@ public enum TmbMsErrorCode {
 	DB_REPO_FAILURE(900, "failure at db repo interaction"),
 	DB_NO_RECORD(901, "no record found"),
 	DB_CONSTRIANT(902, "db constraint error"),
+	FILE_PATH_ERR(950, "file path error"),
+	READ_WRITE_ERR(951, "read/write error"),
 	UNKNOWN_ERR(700, "unknown error");
 
 	private int errCode;

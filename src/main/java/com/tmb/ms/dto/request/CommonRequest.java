@@ -9,4 +9,5 @@ import lombok.ToString;
 @ToString
 public class CommonRequest {
 	private long id;
+	private String data;
 }
