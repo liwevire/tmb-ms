@@ -3,14 +3,17 @@ package com.tmb.ms.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.tmb.ms.dto.request.CommonRequest;
+import com.tmb.ms.dto.request.KycRequest;
 import com.tmb.ms.dto.response.CommonResponse;
 import com.tmb.ms.service.KycService;
 
@@ -20,19 +23,19 @@ public class KycController {
 	private KycService kycService;
 	private Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
-	@PostMapping("/kyc/customerphoto/getById")
-	private CommonResponse get(@RequestBody CommonRequest request) {
-		logger.info(request.toString());
-		CommonResponse commonResponse = null;
-		logger.info(commonResponse.toString());
-		return commonResponse;
+	@GetMapping(value="/kyc/customerphoto/getById", produces = MediaType.IMAGE_JPEG_VALUE)
+	private ResponseEntity<Resource> getCustomerPhoto(@RequestParam long id) {
+		return ResponseEntity.ok()
+				.contentType(MediaType.parseMediaType(MediaType.APPLICATION_OCTET_STREAM_VALUE))
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + kycService.getCustomerPhoto(id).getFilename() + "\"")
+				.body(kycService.getCustomerPhoto(id));
 	}
 
 	@PostMapping("/kyc/customerphoto/update")
-	private CommonResponse add(@RequestBody CommonRequest request) {
+	private CommonResponse updateCustomerPhoto(@RequestBody KycRequest request) {
 		CommonResponse commonResponse = new CommonResponse();
 		try {
-			commonResponse = kycService.update(request);
+			commonResponse = kycService.updateCustomerPhoto(request);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			System.out.println(e.toString());
@@ -41,11 +44,4 @@ public class KycController {
 		return commonResponse;
 	}
 
-	@DeleteMapping("/kyc/customerphoto/delete")
-	private CommonResponse delete(@RequestParam long id) {
-		logger.info(Long.toString(id));
-		CommonResponse commonResponse = null;
-		logger.info(commonResponse.toString());
-		return commonResponse;
-	}
 }
