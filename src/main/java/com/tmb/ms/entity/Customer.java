@@ -33,6 +33,7 @@ public class Customer {
 	private String post;
 	private String pin;
 	private String phone;
+	private String comment;
 
 	public void assign(Customer c) {
 		if (this.equals(c))
@@ -58,6 +59,9 @@ public class Customer {
 		if (StringUtils.isNotBlank(c.getPhone())) {
 			phone = c.getPhone();
 		}
+		if (StringUtils.isNotBlank(c.getComment())) {
+			phone = c.getComment();
+		}
 	}
 
 	@Override
@@ -70,7 +74,7 @@ public class Customer {
 		return name.equalsIgnoreCase(c.getName()) && secondaryName.equalsIgnoreCase(c.getSecondaryName())
 				&& date.compareTo(c.getDate()) == 0 && address.equalsIgnoreCase(c.getAddress())
 				&& post.equalsIgnoreCase(c.getPost()) && pin.equalsIgnoreCase(c.getPin())
-				&& phone.equalsIgnoreCase(c.getPhone());
+				&& phone.equalsIgnoreCase(c.getPhone()) && comment.equalsIgnoreCase(c.getComment());
 	}
 
 	@Override
@@ -83,6 +87,7 @@ public class Customer {
 		hash = 31 * hash + (post == null ? 0 : post.hashCode());
 		hash = 31 * hash + (pin == null ? 0 : pin.hashCode());
 		hash = 31 * hash + (phone == null ? 0 : phone.hashCode());
+		hash = 31 * hash + (comment == null ? 0 : comment.hashCode());
 		return hash;
 	}
 

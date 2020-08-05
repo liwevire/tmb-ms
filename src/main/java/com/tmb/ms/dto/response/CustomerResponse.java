@@ -18,4 +18,5 @@ public class CustomerResponse extends CommonResponse {
 	private String post;
 	private String pin;
 	private String phone;
+	private String comment;
 }

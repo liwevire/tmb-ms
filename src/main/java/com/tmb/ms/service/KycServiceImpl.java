@@ -25,7 +25,7 @@ import com.tmb.ms.util.TmbMsErrorCode;
 public class KycServiceImpl implements KycService {
 
 	private Logger logger = LoggerFactory.getLogger(KycServiceImpl.class);
-	private final String uploadFolder = "C:\\Users\\premk\\git";
+	private final String uploadFolder = "C:\\Users\\premk\\git\\customer";
 
 	public Resource getCustomerPhoto(long id) {
 		KycResponse kycResponse = new KycResponse();

@@ -16,6 +16,7 @@ import lombok.ToString;
 @ToString
 public class LoanResponse extends CommonResponse {
 	private long id;
+	private String altId;
 	private Customer customer;
 	private String status;
 	private String weight;

@@ -31,7 +31,8 @@ public class Loan {
 
 	@ManyToOne(cascade = {  CascadeType.PERSIST })
 	private Customer customer;
-
+	
+	private String altId;
 	private String status;
 	private String weight;
 	private String comment;
