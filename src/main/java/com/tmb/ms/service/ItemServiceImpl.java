@@ -33,7 +33,6 @@ public class ItemServiceImpl implements ItemService {
 			itemResponse = mapper.map(item, ItemResponse.class);
 			itemResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			itemResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
-			logger.info(itemResponse.toString());
 		} catch (NoSuchElementException nse) {
 			itemResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
 			itemResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());

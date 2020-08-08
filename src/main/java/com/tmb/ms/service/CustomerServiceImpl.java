@@ -52,7 +52,6 @@ public class CustomerServiceImpl implements CustomerService {
 			customerResponse = mapper.map(customer, CustomerResponse.class);
 			customerResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			customerResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
-			logger.info(customerResponse.toString());
 		} catch (NoSuchElementException nse) {
 			customerResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
 			customerResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage()+ ":" + nse.getMessage());
@@ -81,7 +80,6 @@ public class CustomerServiceImpl implements CustomerService {
 			customerResponse = mapper.map(customer, CustomerResponse.class);
 			customerResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			customerResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
-			logger.info(customerResponse.toString());
 		} catch (Exception e) {
 			customerResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
 			customerResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
@@ -99,7 +97,6 @@ public class CustomerServiceImpl implements CustomerService {
 			customerResponse = mapper.map(customerEntity, CustomerResponse.class);
 			customerResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			customerResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
-			logger.info(customerResponse.toString());
 		} catch (NoSuchElementException nse) {
 			customerResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
 			customerResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());

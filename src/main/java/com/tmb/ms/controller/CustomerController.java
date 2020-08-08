@@ -30,7 +30,7 @@ public class CustomerController {
 	private List<Customer> get(HttpServletRequest request) {
 		logger.info(request.getRequestURI());
 		List<Customer> customers = customerService.get();
-		logger.info(customers.toString());
+		logger.info(Integer.toString(customers.size()));
 		return customers;
 	}
 	

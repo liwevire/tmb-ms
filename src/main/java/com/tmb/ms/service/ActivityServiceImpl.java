@@ -33,7 +33,6 @@ public class ActivityServiceImpl implements ActivityService {
 			activityResponse = mapper.map(activity, ActivityResponse.class);
 			activityResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			activityResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
-			logger.info(activityResponse.toString());
 		} catch (NoSuchElementException nse) {
 			activityResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
 			activityResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());

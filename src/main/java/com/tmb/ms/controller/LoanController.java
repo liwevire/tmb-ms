@@ -32,7 +32,7 @@ public class LoanController {
 	private List<Loan> get(HttpServletRequest request) {
 		logger.info(request.getRequestURI());
 		List<Loan> loans = loanService.get();
-		logger.info(loans.toString());
+		logger.info(Integer.toString(loans.size()));
 		return loans;
 	}
 
