@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.tmb.ms.util.TmbMsConstant;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -49,5 +51,19 @@ public class Activity {
 		long am = Double.doubleToLongBits(amount);
 		hash = 31 * hash + (int) (am ^ (am >>> 32));
 		return hash;
+	}
+
+	public int compareTo(Activity a) {
+		if (this.getDate().compareTo(a.getDate()) != 0)
+			return this.getDate().compareTo(a.getDate());
+		if (this.getCategory().equalsIgnoreCase(a.getCategory()))
+			return 0;
+		if (this.getCategory().equalsIgnoreCase(TmbMsConstant.ACT_CAT_PRINCIPAL))
+			return -1;
+		if (this.getCategory().equalsIgnoreCase(TmbMsConstant.ACT_CAT_IPAYMENT))
+			return 1;
+		if (this.getCategory().equalsIgnoreCase(TmbMsConstant.ACT_CAT_APPRSRFEE))
+			return 1;
+		return 0;
 	}
 }

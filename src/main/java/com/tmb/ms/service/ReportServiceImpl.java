@@ -1,10 +1,10 @@
 package com.tmb.ms.service;
 
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import org.modelmapper.ConfigurationException;
 import org.modelmapper.MappingException;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +12,13 @@ import org.springframework.stereotype.Service;
 
 import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.response.LoanOutstandingResponse;
+import com.tmb.ms.dto.response.LoanResponse;
 import com.tmb.ms.dto.response.ReportOutstandingResponse;
-import com.tmb.ms.entity.Activity;
-import com.tmb.ms.repo.ActivityRepo;
+import com.tmb.ms.entity.Loan;
 import com.tmb.ms.repo.ReportRepo;
 import com.tmb.ms.util.ReportUtil;
 import com.tmb.ms.util.TmbMsErrorCode;
+import com.tmb.ms.util.TmbMsException;
 
 @Service
 public class ReportServiceImpl implements ReportService {
@@ -25,9 +26,10 @@ public class ReportServiceImpl implements ReportService {
 	@Autowired
 	private ReportRepo reportRepo;
 	@Autowired
-	private ActivityRepo activityRepo;
+	private LoanService loanService;
 	@Autowired
 	private ReportUtil reportUtil;
+	private ModelMapper mapper = new ModelMapper();
 	private Logger logger = LoggerFactory.getLogger(ReportServiceImpl.class);
 
 	@Override
@@ -70,13 +72,15 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public LoanOutstandingResponse calculateInterest(CommonRequest request) {
 		LoanOutstandingResponse outstandingResponse = new LoanOutstandingResponse();
-		Set<Activity> activities = null;
 		try {
-			activities = activityRepo.findByLoanId(request.getId());
-			System.out.println(activities.isEmpty());
-			if(activities!=null && !activities.isEmpty())
-				outstandingResponse = reportUtil.calulateOutstanding(activities);
-			
+			LoanResponse loanResponse = loanService.getbyId(request);
+			outstandingResponse= mapper.map(loanResponse, LoanOutstandingResponse.class);
+			Loan loan = mapper.map(loanResponse, Loan.class); 
+			if(outstandingResponse.getStatusCode()!=TmbMsErrorCode.SUCCESS.getErrCode())
+				throw new TmbMsException(TmbMsErrorCode.UNKNOWN_ERR, outstandingResponse.getStatusMessage());
+			if (loan.getActivities() == null || loan.getActivities().isEmpty())
+				throw new TmbMsException(TmbMsErrorCode.DB_NO_RECORD, TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + " | no activity found for this id: " + request.getId());
+			outstandingResponse = reportUtil.calulateOutstanding(loan);
 			outstandingResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			outstandingResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 		} catch (IllegalArgumentException iae) {

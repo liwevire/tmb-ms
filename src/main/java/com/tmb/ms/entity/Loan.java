@@ -1,5 +1,7 @@
 package com.tmb.ms.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -67,5 +69,24 @@ public class Loan {
 		hash = 31 * hash + (weight == null ? 0 : weight.hashCode());
 		hash = 31 * hash + (comment == null ? 0 : comment.hashCode());
 		return hash;
+	}
+	
+	public List<Activity> setToActivityList(Set<Activity> activities) {
+		List<Activity> list = new ArrayList<Activity>();
+		if (activities == null)
+			return list;
+		for (Activity a : activities) {
+			list.add(a);
+		}
+		return list;
+	}
+	public List<Item> setToItemList(Set<Item> items) {
+		List<Item> list = new ArrayList<Item>();
+		if (items == null)
+			return list;
+		for (Item i : items) {
+			list.add(i);
+		}
+		return list;
 	}
 }

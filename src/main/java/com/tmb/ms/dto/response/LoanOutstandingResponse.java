@@ -8,8 +8,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class LoanOutstandingResponse extends CommonResponse{
-	private long principal;
-	private long outstandingPrincipal;
-	private long interest;
-	private long outstandingInterest;
+	private double principal;
+	private double principalPaid;
+	private double principalOutstanding;
+	private double interest;
+	private double interestPaid;
+	private double interestOutstanding;
+	private int totalDays;
+	private String calcComment;
 }

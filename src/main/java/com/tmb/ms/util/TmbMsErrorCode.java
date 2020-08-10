@@ -9,6 +9,8 @@ public enum TmbMsErrorCode {
 	SUCCESS(200, "SUCCESS"),
 	VALIDATION_ERR(801, "validation error"),
 	MAPPER_ERR(802, "mapping error or mapper config error"),
+	CAL_INTEREST_NO_PRINCIPAL(851, "no principal activity found"),
+	CAL_INTEREST_NO_ACTIVITY(851, "no activity found"),
 	DB_REPO_FAILURE(900, "failure at db repo interaction"),
 	DB_NO_RECORD(901, "no record found"),
 	DB_CONSTRIANT(902, "db constraint error"),
