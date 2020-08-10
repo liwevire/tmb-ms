@@ -3,22 +3,13 @@ package com.tmb.ms.util;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tmb.ms.entity.Activity;
 import com.tmb.ms.entity.Item;
-import com.tmb.ms.repo.ActivityRepo;
-import com.tmb.ms.repo.ItemRepo;
 
 @Service
 public class LoanUtil {
-
-	@Autowired
-	ItemRepo itemRepo;
-	@Autowired
-	ActivityRepo activityRepo;
-
 	public Set<Item> prepareItems(Set<Item> exstItems, Set<Item> reqItems, long id) throws Exception {
 		if (exstItems == null)
 			if (reqItems == null)
@@ -66,7 +57,7 @@ public class LoanUtil {
 				if (reqActivities.contains(exstActivity)) {
 					resActivities.add(exstActivity);
 					selectedActivities.add(exstActivity);
-				} 
+				}
 			}
 			prepareActivities(reqActivities, id);
 			exstActivities.removeAll(selectedActivities);
