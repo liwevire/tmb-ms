@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tmb.ms.dto.request.CommonRequest;
+import com.tmb.ms.dto.request.DatedReportRequest;
 import com.tmb.ms.dto.response.LoanOutstandingResponse;
 import com.tmb.ms.dto.response.ReportOutstandingResponse;
 import com.tmb.ms.service.ReportService;
@@ -22,18 +23,26 @@ public class ReportController {
 
 	private Logger logger = LoggerFactory.getLogger(ReportController.class);
 
-	@GetMapping("/report/get")
-	private ReportOutstandingResponse get(HttpServletRequest request) {
+	@GetMapping("/report/inception")
+	private ReportOutstandingResponse getReport(HttpServletRequest request) {
 		logger.info(request.getRequestURI());
-		ReportOutstandingResponse outstandingResponse = reportService.getPrincipalOutstanding();
+		ReportOutstandingResponse outstandingResponse = reportService.getOutstanding();
 		logger.info(outstandingResponse.toString());
 		return outstandingResponse;
 	}
 
 	@PostMapping("/report/getInterestById")
-	private LoanOutstandingResponse get(@RequestBody CommonRequest request) {
+	private LoanOutstandingResponse getInterestById(@RequestBody CommonRequest request) {
 		logger.info(request.toString());
 		LoanOutstandingResponse outstandingResponse = reportService.calculateInterest(request);
+		logger.info(outstandingResponse.toString());
+		return outstandingResponse;
+	}
+	
+	@PostMapping("/report/dated")
+	private ReportOutstandingResponse reportDated(@RequestBody DatedReportRequest request) {
+		logger.info(request.toString());
+		ReportOutstandingResponse outstandingResponse = reportService.getDatedOutstanding(request);
 		logger.info(outstandingResponse.toString());
 		return outstandingResponse;
 	}
