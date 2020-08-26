@@ -1,6 +1,10 @@
 package com.tmb.ms.service;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import org.modelmapper.ConfigurationException;
 import org.modelmapper.MappingException;
@@ -16,6 +20,7 @@ import com.tmb.ms.dto.response.LoanOutstandingResponse;
 import com.tmb.ms.dto.response.LoanResponse;
 import com.tmb.ms.dto.response.ReportOutstandingResponse;
 import com.tmb.ms.entity.Loan;
+import com.tmb.ms.repo.LoanRepo;
 import com.tmb.ms.repo.ReportRepo;
 import com.tmb.ms.util.ReportUtil;
 import com.tmb.ms.util.TmbMsConstant;
@@ -27,6 +32,8 @@ public class ReportServiceImpl implements ReportService {
 
 	@Autowired
 	private ReportRepo reportRepo;
+	@Autowired
+	private LoanRepo loanRepo;
 	@Autowired
 	private LoanService loanService;
 	@Autowired
@@ -93,6 +100,11 @@ public class ReportServiceImpl implements ReportService {
 			reportResponse.setPrincipalClosed(principalClosed);
 			reportResponse.setPrincipalPaidClosed(principalPaidClosed);
 			reportResponse.setInterestPaidClosed(interestPaidClosed + initInterestClosed);
+			Set<Loan> loans = new HashSet<Loan>();
+			loans = loanRepo.getLoanDated(request.getStartDate(), request.getEndDate());
+			List<Loan> loanList = new ArrayList<Loan>();
+			loanList.addAll(loans);
+			reportResponse.setLoans(loanList);
 			reportResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 		} catch (NoSuchElementException nse) {

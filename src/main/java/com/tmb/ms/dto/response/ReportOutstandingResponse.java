@@ -1,5 +1,9 @@
 package com.tmb.ms.dto.response;
 
+import java.util.List;
+
+import com.tmb.ms.entity.Loan;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,4 +18,5 @@ public class ReportOutstandingResponse extends CommonResponse{
 	private double principalClosed;
 	private double principalPaidClosed;
 	private double interestPaidClosed;
+	private List<Loan> loans;
 }
