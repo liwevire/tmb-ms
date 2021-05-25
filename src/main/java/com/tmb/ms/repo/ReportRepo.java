@@ -16,9 +16,18 @@ public interface ReportRepo extends JpaRepository<Activity, Long> {
 	String Q_SUM_OF_AMOUNT_AGG_DATED = "select coalesce(sum(a.amount),0) from Loan l join l.activities a "
 			+ "where l.status=:status and a.category=:category and "
 			+ "date >= :startDate and date <= :endDate";
+	String Q_COUNT = "select count(*) from Loan l where l.status=:status";
+	String Q_COUNT_DATED = "select count(*) from Loan l where l.status=:status and "
+			+ "date >= :startDate and date <= :endDate";
+	
 	@Query(Q_SUM_OF_AMOUNT_AGG)
-	long getAmountAgg(@Param("status")String loanStatus, @Param("category")String activityCategory);
+	long getAmountAgg(@Param("status") String loanStatus, @Param("category") String activityCategory);
 	@Query(Q_SUM_OF_AMOUNT_AGG_DATED)
-	long getAmountAggDated(@Param("status")String loanStatus, @Param("category")String activityCategory,
-			@Param("startDate")Date startDate, @Param("endDate")Date endDate);
+	long getAmountAggDated(@Param("status") String loanStatus, @Param("category") String activityCategory,
+			@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+	@Query(Q_COUNT)
+	long getLoanCount(@Param("status") String loanStatus);
+	@Query(Q_COUNT_DATED)
+	long getLoanCount(@Param("status") String loanStatus, @Param("startDate") Date startDate,
+			@Param("endDate") Date endDate);
 }

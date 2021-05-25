@@ -11,12 +11,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ReportOutstandingResponse extends CommonResponse{
+public class ReportOutstandingResponse extends CommonResponse {
 	private double principalOpen;
 	private double principalPaidOpen;
 	private double interestPaidOpen;
 	private double principalClosed;
 	private double principalPaidClosed;
 	private double interestPaidClosed;
+	private double loanCountOpen;
+	private double loanCountClosed;
 	private List<Loan> loans;
 }
