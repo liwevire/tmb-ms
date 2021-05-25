@@ -53,12 +53,16 @@ public class ReportServiceImpl implements ReportService {
 			double principalPaidClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_PPAYMENT);
 			double interestPaidClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_IPAYMENT);
 			double initInterestClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_FINTEREST);
+			double loanCountOpen = reportRepo.getLoanCount(TmbMsConstant.LOAN_STS_OPEN);
+			double loanCountClosed = reportRepo.getLoanCount(TmbMsConstant.LOAN_STS_CLOSED);
 			reportResponse.setPrincipalOpen(principalOpen);
 			reportResponse.setPrincipalPaidOpen(principalPaidOpen);
 			reportResponse.setInterestPaidOpen(interestPaidOpen + initInterestOpen);
 			reportResponse.setPrincipalClosed(principalClosed);
 			reportResponse.setPrincipalPaidClosed(principalPaidClosed);
 			reportResponse.setInterestPaidClosed(interestPaidClosed + initInterestClosed);
+			reportResponse.setLoanCountOpen(loanCountOpen);
+			reportResponse.setLoanCountClosed(loanCountClosed);
 			reportResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 		} catch (NoSuchElementException nse) {
