@@ -98,12 +98,16 @@ public class ReportServiceImpl implements ReportService {
 			double principalPaidClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_PPAYMENT, request.getStartDate(), request.getEndDate());
 			double interestPaidClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_IPAYMENT, request.getStartDate(), request.getEndDate());
 			double initInterestClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_FINTEREST, request.getStartDate(), request.getEndDate());
+			double loanCountOpen = reportRepo.getLoanCountDated(TmbMsConstant.LOAN_STS_OPEN, request.getStartDate(), request.getEndDate());
+			double loanCountClosed = reportRepo.getLoanCountDated(TmbMsConstant.LOAN_STS_CLOSED, request.getStartDate(), request.getEndDate());
 			reportResponse.setPrincipalOpen(principalOpen);
 			reportResponse.setPrincipalPaidOpen(principalPaidOpen);
 			reportResponse.setInterestPaidOpen(interestPaidOpen + initInterestOpen);
 			reportResponse.setPrincipalClosed(principalClosed);
 			reportResponse.setPrincipalPaidClosed(principalPaidClosed);
 			reportResponse.setInterestPaidClosed(interestPaidClosed + initInterestClosed);
+			reportResponse.setLoanCountOpen(loanCountOpen);
+			reportResponse.setLoanCountClosed(loanCountClosed);
 			Set<Loan> loans = new HashSet<Loan>();
 			loans = loanRepo.getLoanDated(request.getStartDate(), request.getEndDate());
 			List<Loan> loanList = new ArrayList<Loan>();
