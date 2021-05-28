@@ -17,7 +17,7 @@ public interface ReportRepo extends JpaRepository<Activity, Long> {
 			+ "where l.status=:status and a.category=:category and "
 			+ "date >= :startDate and date <= :endDate";
 	String Q_COUNT = "select count(*) from Loan l where l.status=:status";
-	String Q_COUNT_DATED = "select count(*) from Loan l join l.activities a "
+	String Q_COUNT_DATED = "select count(distinct l.id) from Loan l join l.activities a "
 			+ "where l.status=:status and date >= :startDate and date <= :endDate";
 	
 	@Query(Q_SUM_OF_AMOUNT_AGG)
