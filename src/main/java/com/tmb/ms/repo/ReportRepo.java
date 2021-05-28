@@ -27,7 +27,4 @@ public interface ReportRepo extends JpaRepository<Activity, Long> {
 			@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 	@Query(Q_COUNT)
 	long getLoanCount(@Param("status") String loanStatus);
-	@Query(Q_COUNT_DATED)
-	long getLoanCountDated(@Param("status") String loanStatus, @Param("startDate") Date startDate,
-			@Param("endDate") Date endDate);
 }

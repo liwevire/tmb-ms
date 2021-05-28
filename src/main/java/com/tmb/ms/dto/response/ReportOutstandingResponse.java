@@ -20,5 +20,6 @@ public class ReportOutstandingResponse extends CommonResponse {
 	private double interestPaidClosed;
 	private double loanCountOpen;
 	private double loanCountClosed;
+	private double interestOutstandingOpen;
 	private List<Loan> loans;
 }

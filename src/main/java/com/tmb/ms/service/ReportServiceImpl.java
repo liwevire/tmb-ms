@@ -53,14 +53,26 @@ public class ReportServiceImpl implements ReportService {
 			double principalPaidClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_PPAYMENT);
 			double interestPaidClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_IPAYMENT);
 			double initInterestClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_FINTEREST);
-			double loanCountOpen = reportRepo.getLoanCount(TmbMsConstant.LOAN_STS_OPEN);
-			double loanCountClosed = reportRepo.getLoanCount(TmbMsConstant.LOAN_STS_CLOSED);
+			double loanCountOpen = 0;
+			double loanCountClosed = 0;
+			double interestOutstandingOpen = 0;
 			reportResponse.setPrincipalOpen(principalOpen);
 			reportResponse.setPrincipalPaidOpen(principalPaidOpen);
 			reportResponse.setInterestPaidOpen(interestPaidOpen + initInterestOpen);
 			reportResponse.setPrincipalClosed(principalClosed);
 			reportResponse.setPrincipalPaidClosed(principalPaidClosed);
 			reportResponse.setInterestPaidClosed(interestPaidClosed + initInterestClosed);
+			List<Loan> loans = new ArrayList<Loan>();
+			loans = loanRepo.findAll();
+			for (Loan loan : loans) {
+				if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_OPEN)) {
+					loanCountOpen++;
+					interestOutstandingOpen += reportUtil.calulateOutstanding(loan).getInterestOutstanding();
+				}
+				if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_CLOSED))
+					loanCountClosed++;
+			}
+			reportResponse.setInterestOutstandingOpen(interestOutstandingOpen);
 			reportResponse.setLoanCountOpen(loanCountOpen);
 			reportResponse.setLoanCountClosed(loanCountClosed);
 			reportResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
@@ -98,20 +110,30 @@ public class ReportServiceImpl implements ReportService {
 			double principalPaidClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_PPAYMENT, request.getStartDate(), request.getEndDate());
 			double interestPaidClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_IPAYMENT, request.getStartDate(), request.getEndDate());
 			double initInterestClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_FINTEREST, request.getStartDate(), request.getEndDate());
-			double loanCountOpen = reportRepo.getLoanCountDated(TmbMsConstant.LOAN_STS_OPEN, request.getStartDate(), request.getEndDate());
-			double loanCountClosed = reportRepo.getLoanCountDated(TmbMsConstant.LOAN_STS_CLOSED, request.getStartDate(), request.getEndDate());
+			double loanCountOpen = 0;
+			double loanCountClosed = 0;
+			double interestOutstandingOpen = 0;
 			reportResponse.setPrincipalOpen(principalOpen);
 			reportResponse.setPrincipalPaidOpen(principalPaidOpen);
 			reportResponse.setInterestPaidOpen(interestPaidOpen + initInterestOpen);
 			reportResponse.setPrincipalClosed(principalClosed);
 			reportResponse.setPrincipalPaidClosed(principalPaidClosed);
 			reportResponse.setInterestPaidClosed(interestPaidClosed + initInterestClosed);
-			reportResponse.setLoanCountOpen(loanCountOpen);
-			reportResponse.setLoanCountClosed(loanCountClosed);
 			Set<Loan> loans = new HashSet<Loan>();
 			loans = loanRepo.getLoanDated(request.getStartDate(), request.getEndDate());
 			List<Loan> loanList = new ArrayList<Loan>();
 			loanList.addAll(loans);
+			for (Loan loan : loanList) {
+				if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_OPEN)) {
+					loanCountOpen++;
+					interestOutstandingOpen += reportUtil.calulateOutstanding(loan).getInterestOutstanding();
+				}
+				if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_CLOSED))
+					loanCountClosed++;
+			}
+			reportResponse.setInterestOutstandingOpen(interestOutstandingOpen);
+			reportResponse.setLoanCountOpen(loanCountOpen);
+			reportResponse.setLoanCountClosed(loanCountClosed);
 			reportResponse.setLoans(loanList);
 			reportResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());

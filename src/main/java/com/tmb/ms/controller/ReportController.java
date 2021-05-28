@@ -23,6 +23,14 @@ public class ReportController {
 
 	private Logger logger = LoggerFactory.getLogger(ReportController.class);
 
+	@PostMapping("/report/getInterestById")
+	private LoanOutstandingResponse getInterestById(@RequestBody CommonRequest request) {
+		logger.info(request.toString());
+		LoanOutstandingResponse outstandingResponse = reportService.calculateInterest(request);
+		logger.info(outstandingResponse.toString());
+		return outstandingResponse;
+	}
+
 	@GetMapping("/report/inception")
 	private ReportOutstandingResponse getReport(HttpServletRequest request) {
 		logger.info(request.getRequestURI());
@@ -31,19 +39,11 @@ public class ReportController {
 		return outstandingResponse;
 	}
 
-	@PostMapping("/report/getInterestById")
-	private LoanOutstandingResponse getInterestById(@RequestBody CommonRequest request) {
-		logger.info(request.toString());
-		LoanOutstandingResponse outstandingResponse = reportService.calculateInterest(request);
-		logger.info(outstandingResponse.toString());
-		return outstandingResponse;
-	}
-	
 	@PostMapping("/report/dated")
 	private ReportOutstandingResponse reportDated(@RequestBody DatedReportRequest request) {
 		logger.info(request.toString());
 		ReportOutstandingResponse outstandingResponse = reportService.getDatedOutstanding(request);
-		logger.info(outstandingResponse.toString());
+		logger.info(outstandingResponse.getStatusMessage());
 		return outstandingResponse;
 	}
 }
