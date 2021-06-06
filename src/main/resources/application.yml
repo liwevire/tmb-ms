@@ -13,6 +13,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.SQLiteDialect
+  output:
+    ansi:      enabled: always
 logging:
   file: ./logs/tmb-ms.log
   level:

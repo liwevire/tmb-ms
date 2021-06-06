@@ -16,6 +16,8 @@ public enum TmbMsErrorCode {
 	DB_CONSTRIANT(902, "db constraint error"),
 	FILE_PATH_ERR(950, "file path error"),
 	READ_WRITE_ERR(951, "read/write error"),
+	URL_CONN_ERR(952, "can't fetch gold rate page"),
+	NUM_PARSE_ERR(952, "can't parse gold rate"),
 	UNKNOWN_ERR(700, "unknown error");
 
 	private int errCode;
