@@ -1,6 +1,7 @@
 package com.tmb.ms.service.scrape;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Locale;
@@ -27,8 +28,13 @@ public class ScraperServiceImpl implements ScraperService {
 			doc = Jsoup.connect("https://www.goodreturns.in/gold-rates/chennai.html").get();
 			Elements els = doc.select("div#current-price strong");
 			for (Element el : els) {
-				goldRateResponse.setGoldRate(Long.parseLong(NumberFormat.getNumberInstance(Locale.UK).parse(el.ownText()).toString()));
+				goldRateResponse.setGoldRate(
+						Long.parseLong(NumberFormat.getNumberInstance(Locale.UK).parse(el.ownText()).toString()));
 			}
+		} catch (UnknownHostException uhe) {
+			goldRateResponse.setStatusCode(TmbMsErrorCode.INTERNET_ERR.getErrCode());
+			goldRateResponse.setStatusMessage(TmbMsErrorCode.INTERNET_ERR.getErrMessage() + ":" + uhe.getMessage());
+			logger.error(goldRateResponse.toString() + uhe.getMessage(), uhe);
 		} catch (IOException ioe) {
 			goldRateResponse.setStatusCode(TmbMsErrorCode.URL_CONN_ERR.getErrCode());
 			goldRateResponse.setStatusMessage(TmbMsErrorCode.URL_CONN_ERR.getErrMessage() + ":" + ioe.getMessage());
@@ -45,8 +51,3 @@ public class ScraperServiceImpl implements ScraperService {
 		return goldRateResponse;
 	}
 }
-
-
-
-
-

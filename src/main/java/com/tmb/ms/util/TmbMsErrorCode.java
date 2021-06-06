@@ -17,6 +17,7 @@ public enum TmbMsErrorCode {
 	FILE_PATH_ERR(950, "file path error"),
 	READ_WRITE_ERR(951, "read/write error"),
 	URL_CONN_ERR(952, "can't fetch gold rate page"),
+	INTERNET_ERR(952, "can't get gold rate, check internet connection"),
 	NUM_PARSE_ERR(952, "can't parse gold rate"),
 	UNKNOWN_ERR(700, "unknown error");
 
