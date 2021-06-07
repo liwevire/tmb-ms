@@ -9,3 +9,6 @@ SQLite is used for database. Database file is included in the project folder and
 ## Test
 Postman is used for testing the API and my api collection is available [here](https://www.getpostman.com/collections/244c9bee74a64dd73e7f). Collection is outdated may fail for some api's.
 Project is swagger enabled, [http://localhost:6080/api/swagger-ui.html](http://localhost:6080/api/swagger-ui.html). Use this instead.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTUwNzU2NTA2XX0=
+-->
