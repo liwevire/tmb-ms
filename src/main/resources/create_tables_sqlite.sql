@@ -40,3 +40,9 @@ CREATE TABLE "activity" (
 	FOREIGN KEY("loan_id") REFERENCES "loan"("id"),
 	PRIMARY KEY("id" AUTOINCREMENT)
 );
+CREATE TABLE "misc" (
+	"id"	INTEGER NOT NULL,
+	"date"	datetime NOT NULL,
+	"gold_rate"	INTEGER NOT NULL,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);

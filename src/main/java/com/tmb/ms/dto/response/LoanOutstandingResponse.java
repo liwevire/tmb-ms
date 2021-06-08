@@ -16,4 +16,5 @@ public class LoanOutstandingResponse extends CommonResponse{
 	private double interestOutstanding;
 	private int totalDays;
 	private String calcComment;
+	private int valuation;
 }

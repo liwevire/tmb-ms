@@ -36,7 +36,7 @@ public class Loan {
 	
 	private String altId;
 	private String status;
-	private String weight;
+	private double weight;
 	private String comment;
 
 	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -55,7 +55,7 @@ public class Loan {
 			return false;
 		Loan l = (Loan) o;
 		return customer.equals(l.getCustomer()) && status.equalsIgnoreCase(l.getStatus())
-				&& weight.equalsIgnoreCase(l.getWeight()) && comment.equalsIgnoreCase(l.getComment())
+				&& weight == l.getWeight() && comment.equalsIgnoreCase(l.getComment())
 				&& items.equals(l.getItems()) && activities.equals(l.getActivities());
 	}
 
@@ -66,7 +66,8 @@ public class Loan {
 		hash = 31 * hash + (items == null ? 0 : items.hashCode());
 		hash = 31 * hash + (activities == null ? 0 : activities.hashCode());
 		hash = 31 * hash + (status == null ? 0 : status.hashCode());
-		hash = 31 * hash + (weight == null ? 0 : weight.hashCode());
+		long wt = Double.doubleToLongBits(weight);
+		hash = 31 * hash + (int) (wt ^ (wt >>> 32));
 		hash = 31 * hash + (comment == null ? 0 : comment.hashCode());
 		return hash;
 	}

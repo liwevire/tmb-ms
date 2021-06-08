@@ -7,15 +7,19 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tmb.ms.dto.response.LoanOutstandingResponse;
 import com.tmb.ms.entity.Activity;
 import com.tmb.ms.entity.Loan;
+import com.tmb.ms.service.scrape.ScraperService;
 
 @Service
 public class ReportUtil {
-
+	@Autowired
+	private ScraperService scraperService;
+	
 	public LoanOutstandingResponse calulateOutstanding(Loan loan) throws TmbMsException{
 		LoanOutstandingResponse outstandingResponse = new LoanOutstandingResponse();
 		Set<Activity> activities = loan.getActivities();
@@ -80,6 +84,7 @@ public class ReportUtil {
 					+ calculateDays(dateCursor, endDate) + " days #Int=" + Math.round(interestHolder);
 		}
 		interestAccrued = Math.round(interestAccrued/5)*5;
+		outstandingResponse.setValuation((int)(loan.getWeight()*scraperService.getGoldRate().getGoldRate()));
 		outstandingResponse.setTotalDays(calculateDays(loanDate, endDate));
 		outstandingResponse.setPrincipal(principal);
 		outstandingResponse.setPrincipalPaid(principalPaid);
