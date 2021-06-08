@@ -84,7 +84,7 @@ public class ReportUtil {
 					+ calculateDays(dateCursor, endDate) + " days #Int=" + Math.round(interestHolder);
 		}
 		interestAccrued = Math.round(interestAccrued/5)*5;
-		outstandingResponse.setValuation((int)(loan.getWeight()*scraperService.getGoldRate().getGoldRate()));
+		outstandingResponse.setValuation((int)(loan.getWeight()*(scraperService.getGoldRate().getGoldRate()-600)));
 		outstandingResponse.setTotalDays(calculateDays(loanDate, endDate));
 		outstandingResponse.setPrincipal(principal);
 		outstandingResponse.setPrincipalPaid(principalPaid);
