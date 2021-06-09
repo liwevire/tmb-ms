@@ -19,6 +19,7 @@ import com.tmb.ms.dto.request.DatedReportRequest;
 import com.tmb.ms.dto.response.LoanOutstandingResponse;
 import com.tmb.ms.dto.response.LoanResponse;
 import com.tmb.ms.dto.response.ReportOutstandingResponse;
+import com.tmb.ms.dto.response.ValuationResponse;
 import com.tmb.ms.entity.Loan;
 import com.tmb.ms.repo.LoanRepo;
 import com.tmb.ms.repo.ReportRepo;
@@ -42,39 +43,35 @@ public class ReportServiceImpl implements ReportService {
 	private Logger logger = LoggerFactory.getLogger(ReportServiceImpl.class);
 
 	@Override
-	public ReportOutstandingResponse getOutstanding() {
+	public ReportOutstandingResponse getInceptionOutstanding() {
 		ReportOutstandingResponse reportResponse = new ReportOutstandingResponse();
 		try {
-			double principalOpen = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_OPEN, TmbMsConstant.ACT_CAT_PRINCIPAL);
-			double principalPaidOpen = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_OPEN, TmbMsConstant.ACT_CAT_PPAYMENT);
-			double interestPaidOpen = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_OPEN, TmbMsConstant.ACT_CAT_IPAYMENT);
-			double initInterestOpen = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_OPEN, TmbMsConstant.ACT_CAT_FINTEREST);
-			double principalClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_PRINCIPAL);
-			double principalPaidClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_PPAYMENT);
-			double interestPaidClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_IPAYMENT);
-			double initInterestClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_FINTEREST);
-			double loanCountOpen = 0;
-			double loanCountClosed = 0;
-			double interestOutstandingOpen = 0;
+			double principalOpen = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_OPEN,
+					TmbMsConstant.ACT_CAT_PRINCIPAL);
+			double principalPaidOpen = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_OPEN,
+					TmbMsConstant.ACT_CAT_PPAYMENT);
+			double interestPaidOpen = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_OPEN,
+					TmbMsConstant.ACT_CAT_IPAYMENT);
+			double initInterestOpen = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_OPEN,
+					TmbMsConstant.ACT_CAT_FINTEREST);
+			double principalClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED,
+					TmbMsConstant.ACT_CAT_PRINCIPAL);
+			double principalPaidClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED,
+					TmbMsConstant.ACT_CAT_PPAYMENT);
+			double interestPaidClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED,
+					TmbMsConstant.ACT_CAT_IPAYMENT);
+			double initInterestClosed = reportRepo.getAmountAgg(TmbMsConstant.LOAN_STS_CLOSED,
+					TmbMsConstant.ACT_CAT_FINTEREST);
+			List<Loan> loans = new ArrayList<Loan>();
+			loans = loanRepo.findAll();
+			reportResponse = seggregateLoansByStatus(loans);
+			reportResponse.setLoans(null);
 			reportResponse.setPrincipalOpen(principalOpen);
 			reportResponse.setPrincipalPaidOpen(principalPaidOpen);
 			reportResponse.setInterestPaidOpen(interestPaidOpen + initInterestOpen);
 			reportResponse.setPrincipalClosed(principalClosed);
 			reportResponse.setPrincipalPaidClosed(principalPaidClosed);
 			reportResponse.setInterestPaidClosed(interestPaidClosed + initInterestClosed);
-			List<Loan> loans = new ArrayList<Loan>();
-			loans = loanRepo.findAll();
-			for (Loan loan : loans) {
-				if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_OPEN)) {
-					loanCountOpen++;
-					interestOutstandingOpen += reportUtil.calulateOutstanding(loan).getInterestOutstanding();
-				}
-				if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_CLOSED))
-					loanCountClosed++;
-			}
-			reportResponse.setInterestOutstandingOpen(interestOutstandingOpen);
-			reportResponse.setLoanCountOpen(loanCountOpen);
-			reportResponse.setLoanCountClosed(loanCountClosed);
 			reportResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 		} catch (NoSuchElementException nse) {
@@ -89,6 +86,9 @@ public class ReportServiceImpl implements ReportService {
 			reportResponse.setStatusCode(TmbMsErrorCode.MAPPER_ERR.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.MAPPER_ERR.getErrMessage() + ":" + ceme.getMessage());
 			logger.error(reportResponse.toString() + ceme.getMessage(), ceme);
+		} catch (TmbMsException tme) {
+			reportResponse.setStatusCode(tme.getErrCode().getErrCode());
+			reportResponse.setStatusMessage(tme.getErrMessage());
 		} catch (Exception e) {
 			reportResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
@@ -96,45 +96,39 @@ public class ReportServiceImpl implements ReportService {
 		}
 		return reportResponse;
 	}
-	
+
 	@Override
 	public ReportOutstandingResponse getDatedOutstanding(DatedReportRequest request) {
 		ReportOutstandingResponse reportResponse = new ReportOutstandingResponse();
 		try {
 			request.validate();
-			double principalOpen = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_OPEN, TmbMsConstant.ACT_CAT_PRINCIPAL, request.getStartDate(), request.getEndDate());
-			double principalPaidOpen = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_OPEN, TmbMsConstant.ACT_CAT_PPAYMENT, request.getStartDate(), request.getEndDate());
-			double interestPaidOpen = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_OPEN, TmbMsConstant.ACT_CAT_IPAYMENT, request.getStartDate(), request.getEndDate());
-			double initInterestOpen = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_OPEN, TmbMsConstant.ACT_CAT_FINTEREST, request.getStartDate(), request.getEndDate());
-			double principalClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_PRINCIPAL, request.getStartDate(), request.getEndDate());
-			double principalPaidClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_PPAYMENT, request.getStartDate(), request.getEndDate());
-			double interestPaidClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_IPAYMENT, request.getStartDate(), request.getEndDate());
-			double initInterestClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED, TmbMsConstant.ACT_CAT_FINTEREST, request.getStartDate(), request.getEndDate());
-			double loanCountOpen = 0;
-			double loanCountClosed = 0;
-			double interestOutstandingOpen = 0;
+			double principalOpen = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_OPEN,
+					TmbMsConstant.ACT_CAT_PRINCIPAL, request.getStartDate(), request.getEndDate());
+			double principalPaidOpen = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_OPEN,
+					TmbMsConstant.ACT_CAT_PPAYMENT, request.getStartDate(), request.getEndDate());
+			double interestPaidOpen = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_OPEN,
+					TmbMsConstant.ACT_CAT_IPAYMENT, request.getStartDate(), request.getEndDate());
+			double initInterestOpen = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_OPEN,
+					TmbMsConstant.ACT_CAT_FINTEREST, request.getStartDate(), request.getEndDate());
+			double principalClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED,
+					TmbMsConstant.ACT_CAT_PRINCIPAL, request.getStartDate(), request.getEndDate());
+			double principalPaidClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED,
+					TmbMsConstant.ACT_CAT_PPAYMENT, request.getStartDate(), request.getEndDate());
+			double interestPaidClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED,
+					TmbMsConstant.ACT_CAT_IPAYMENT, request.getStartDate(), request.getEndDate());
+			double initInterestClosed = reportRepo.getAmountAggDated(TmbMsConstant.LOAN_STS_CLOSED,
+					TmbMsConstant.ACT_CAT_FINTEREST, request.getStartDate(), request.getEndDate());
+			Set<Loan> loans = new HashSet<Loan>();
+			loans = loanRepo.getLoanDated(request.getStartDate(), request.getEndDate());
+			List<Loan> loanList = new ArrayList<Loan>();
+			loanList.addAll(loans);
+			reportResponse = seggregateLoansByStatus(loanList);
 			reportResponse.setPrincipalOpen(principalOpen);
 			reportResponse.setPrincipalPaidOpen(principalPaidOpen);
 			reportResponse.setInterestPaidOpen(interestPaidOpen + initInterestOpen);
 			reportResponse.setPrincipalClosed(principalClosed);
 			reportResponse.setPrincipalPaidClosed(principalPaidClosed);
 			reportResponse.setInterestPaidClosed(interestPaidClosed + initInterestClosed);
-			Set<Loan> loans = new HashSet<Loan>();
-			loans = loanRepo.getLoanDated(request.getStartDate(), request.getEndDate());
-			List<Loan> loanList = new ArrayList<Loan>();
-			loanList.addAll(loans);
-			for (Loan loan : loanList) {
-				if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_OPEN)) {
-					loanCountOpen++;
-					interestOutstandingOpen += reportUtil.calulateOutstanding(loan).getInterestOutstanding();
-				}
-				if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_CLOSED))
-					loanCountClosed++;
-			}
-			reportResponse.setInterestOutstandingOpen(interestOutstandingOpen);
-			reportResponse.setLoanCountOpen(loanCountOpen);
-			reportResponse.setLoanCountClosed(loanCountClosed);
-			reportResponse.setLoans(loanList);
 			reportResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 		} catch (NoSuchElementException nse) {
@@ -149,6 +143,9 @@ public class ReportServiceImpl implements ReportService {
 			reportResponse.setStatusCode(TmbMsErrorCode.MAPPER_ERR.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.MAPPER_ERR.getErrMessage() + ":" + ceme.getMessage());
 			logger.error(reportResponse.toString() + ceme.getMessage(), ceme);
+		} catch (TmbMsException tme) {
+			reportResponse.setStatusCode(tme.getErrCode().getErrCode());
+			reportResponse.setStatusMessage(tme.getErrMessage());
 		} catch (Exception e) {
 			reportResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
 			reportResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
@@ -156,29 +153,34 @@ public class ReportServiceImpl implements ReportService {
 		}
 		return reportResponse;
 	}
-	
+
 	@Override
 	public LoanOutstandingResponse calculateInterest(CommonRequest request) {
 		LoanOutstandingResponse outstandingResponse = new LoanOutstandingResponse();
 		try {
 			LoanResponse loanResponse = loanService.getbyId(request);
-			outstandingResponse= mapper.map(loanResponse, LoanOutstandingResponse.class);
-			Loan loan = mapper.map(loanResponse, Loan.class); 
-			if(outstandingResponse.getStatusCode()!=TmbMsErrorCode.SUCCESS.getErrCode())
+			outstandingResponse = mapper.map(loanResponse, LoanOutstandingResponse.class);
+			Loan loan = mapper.map(loanResponse, Loan.class);
+			if (outstandingResponse.getStatusCode() != TmbMsErrorCode.SUCCESS.getErrCode())
 				throw new TmbMsException(TmbMsErrorCode.UNKNOWN_ERR, outstandingResponse.getStatusMessage());
 			if (loan.getActivities() == null || loan.getActivities().isEmpty())
-				throw new TmbMsException(TmbMsErrorCode.DB_NO_RECORD, TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + " | no activity found for this id: " + request.getId());
+				throw new TmbMsException(TmbMsErrorCode.DB_NO_RECORD, TmbMsErrorCode.DB_NO_RECORD.getErrMessage()
+						+ " | no activity found for this id: " + request.getId());
 			outstandingResponse = reportUtil.calulateOutstanding(loan);
 			outstandingResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			outstandingResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
 		} catch (IllegalArgumentException iae) {
 			outstandingResponse.setStatusCode(TmbMsErrorCode.VALIDATION_ERR.getErrCode());
-			outstandingResponse.setStatusMessage(TmbMsErrorCode.VALIDATION_ERR.getErrMessage() + ":" + iae.getMessage());
+			outstandingResponse
+					.setStatusMessage(TmbMsErrorCode.VALIDATION_ERR.getErrMessage() + ":" + iae.getMessage());
 			logger.error(outstandingResponse.toString() + iae.getMessage(), iae);
 		} catch (NoSuchElementException nse) {
 			outstandingResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
 			outstandingResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage());
 			logger.error(outstandingResponse.toString() + nse.getMessage(), nse);
+		} catch (TmbMsException tme) {
+			outstandingResponse.setStatusCode(tme.getErrCode().getErrCode());
+			outstandingResponse.setStatusMessage(tme.getErrMessage());
 		} catch (Exception e) {
 			outstandingResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
 			outstandingResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
@@ -186,4 +188,75 @@ public class ReportServiceImpl implements ReportService {
 		}
 		return outstandingResponse;
 	}
+
+	@Override
+	public ValuationResponse getValuationReport() {
+		ValuationResponse valuationResponse = new ValuationResponse();
+		try {
+			List<Loan> loans = new ArrayList<Loan>();
+			loans = loanRepo.findByStatus(TmbMsConstant.LOAN_STS_OPEN);
+			valuationResponse = seggregateLoansByValuation(loans);
+			valuationResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
+			valuationResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
+		} catch (NoSuchElementException nse) {
+			valuationResponse.setStatusCode(TmbMsErrorCode.DB_NO_RECORD.getErrCode());
+			valuationResponse.setStatusMessage(TmbMsErrorCode.DB_NO_RECORD.getErrMessage() + ":" + nse.getMessage());
+			logger.error(valuationResponse.toString() + nse.getMessage(), nse);
+		} catch (IllegalArgumentException iae) {
+			valuationResponse.setStatusCode(TmbMsErrorCode.VALIDATION_ERR.getErrCode());
+			valuationResponse.setStatusMessage(TmbMsErrorCode.VALIDATION_ERR.getErrMessage() + ":" + iae.getMessage());
+			logger.error(valuationResponse.toString() + iae.getMessage(), iae);
+		} catch (ConfigurationException | MappingException ceme) {
+			valuationResponse.setStatusCode(TmbMsErrorCode.MAPPER_ERR.getErrCode());
+			valuationResponse.setStatusMessage(TmbMsErrorCode.MAPPER_ERR.getErrMessage() + ":" + ceme.getMessage());
+			logger.error(valuationResponse.toString() + ceme.getMessage(), ceme);
+		} catch (TmbMsException tme) {
+			valuationResponse.setStatusCode(tme.getErrCode().getErrCode());
+			valuationResponse.setStatusMessage(tme.getErrMessage());
+		} catch (Exception e) {
+			valuationResponse.setStatusCode(TmbMsErrorCode.UNKNOWN_ERR.getErrCode());
+			valuationResponse.setStatusMessage(TmbMsErrorCode.UNKNOWN_ERR.getErrMessage() + ":" + e.getMessage());
+			logger.error(valuationResponse.toString() + e.getMessage(), e);
+		}
+		return valuationResponse;
+	}
+
+	private ValuationResponse seggregateLoansByValuation(List<Loan> loanList) throws TmbMsException {
+		ValuationResponse valuationResponse = new ValuationResponse();
+		for (Loan loan : loanList)
+			if (reportUtil.getValuationPcnt(loan) <= 25)
+				valuationResponse.getLoanVal25().add(loan);
+			else if (reportUtil.getValuationPcnt(loan) <= 50)
+				valuationResponse.getLoanVal50().add(loan);
+			else if (reportUtil.getValuationPcnt(loan) <= 70)
+				valuationResponse.getLoanVal70().add(loan);
+			else if (reportUtil.getValuationPcnt(loan) <= 85)
+				valuationResponse.getLoanVal85().add(loan);
+			else if (reportUtil.getValuationPcnt(loan) <= 100)
+				valuationResponse.getLoanVal100().add(loan);
+			else
+				valuationResponse.getLoanValX().add(loan);
+		return valuationResponse;
+	}
+
+	private ReportOutstandingResponse seggregateLoansByStatus(List<Loan> loanList) throws TmbMsException {
+		ReportOutstandingResponse reportResponse = new ReportOutstandingResponse();
+		double loanCountOpen = 0;
+		double loanCountClosed = 0;
+		double interestOutstandingOpen = 0;
+		for (Loan loan : loanList) {
+			if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_OPEN)) {
+				loanCountOpen++;
+				interestOutstandingOpen += reportUtil.calulateOutstanding(loan).getInterestOutstanding();
+			}
+			if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_CLOSED))
+				loanCountClosed++;
+		}
+		reportResponse.setInterestOutstandingOpen(interestOutstandingOpen);
+		reportResponse.setLoanCountOpen(loanCountOpen);
+		reportResponse.setLoanCountClosed(loanCountClosed);
+		reportResponse.setLoans(loanList);
+		return reportResponse;
+	}
+
 }

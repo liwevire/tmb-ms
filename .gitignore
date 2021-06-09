@@ -32,3 +32,4 @@ build/
 
 ### MS-app ###
 logs/
+/bank.db

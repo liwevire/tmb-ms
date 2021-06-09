@@ -14,6 +14,7 @@ import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.request.DatedReportRequest;
 import com.tmb.ms.dto.response.LoanOutstandingResponse;
 import com.tmb.ms.dto.response.ReportOutstandingResponse;
+import com.tmb.ms.dto.response.ValuationResponse;
 import com.tmb.ms.service.ReportService;
 
 @RestController
@@ -32,9 +33,9 @@ public class ReportController {
 	}
 
 	@GetMapping("/report/inception")
-	private ReportOutstandingResponse getReport(HttpServletRequest request) {
+	private ReportOutstandingResponse reportInception(HttpServletRequest request) {
 		logger.info(request.getRequestURI());
-		ReportOutstandingResponse outstandingResponse = reportService.getOutstanding();
+		ReportOutstandingResponse outstandingResponse = reportService.getInceptionOutstanding();
 		logger.info(outstandingResponse.toString());
 		return outstandingResponse;
 	}
@@ -45,5 +46,13 @@ public class ReportController {
 		ReportOutstandingResponse outstandingResponse = reportService.getDatedOutstanding(request);
 		logger.info(outstandingResponse.getStatusMessage());
 		return outstandingResponse;
+	}
+
+	@GetMapping("/report/valuation")
+	private ValuationResponse getValuationReport(HttpServletRequest request) {
+		logger.info(request.getRequestURI());
+		ValuationResponse valuationResponse = reportService.getValuationReport();
+		logger.info(valuationResponse.toString());
+		return valuationResponse;
 	}
 }

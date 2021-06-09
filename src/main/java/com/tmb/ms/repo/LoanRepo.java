@@ -20,4 +20,5 @@ public interface LoanRepo extends JpaRepository<Loan, Long> {
 	@Query(Q_LOAN_DATED)
 	Set<Loan> getLoanDated(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 	List<Loan> findByCustomer(Customer customer);
+	List<Loan> findByStatus(String status);
 }

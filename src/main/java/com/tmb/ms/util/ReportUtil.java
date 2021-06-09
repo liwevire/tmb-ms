@@ -19,20 +19,20 @@ import com.tmb.ms.service.scrape.ScraperService;
 public class ReportUtil {
 	@Autowired
 	private ScraperService scraperService;
-	
-	public LoanOutstandingResponse calulateOutstanding(Loan loan) throws TmbMsException{
+
+	public LoanOutstandingResponse calulateOutstanding(Loan loan) throws TmbMsException {
 		LoanOutstandingResponse outstandingResponse = new LoanOutstandingResponse();
 		Set<Activity> activities = loan.getActivities();
-		Comparator<Activity> byDate=(Activity a1, Activity a2) -> a1.compareTo(a2);
+		Comparator<Activity> byDate = (Activity a1, Activity a2) -> a1.compareTo(a2);
 		List<Activity> activityList = loan.setToActivityList(activities);
 		Collections.sort(activityList, byDate);
 		String runningString = "";
 		Date loanDate = null;
 		Date endDate = new Date();
-		if(activityList.isEmpty())
+		if (activityList.isEmpty())
 			throw new TmbMsException(TmbMsErrorCode.CAL_INTEREST_NO_ACTIVITY);
-		if(loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_CLOSED)) {
-			endDate = activityList.get(activityList.size()-1).getDate();
+		if (loan.getStatus().equalsIgnoreCase(TmbMsConstant.LOAN_STS_CLOSED)) {
+			endDate = activityList.get(activityList.size() - 1).getDate();
 		}
 		double principal = 0;
 		double principalPaid = 0;
@@ -47,7 +47,7 @@ public class ReportUtil {
 			case TmbMsConstant.ACT_CAT_FINTEREST:
 			case TmbMsConstant.ACT_CAT_IPAYMENT:
 				interestPaid += activity.getAmount();
-				break;	
+				break;
 			case TmbMsConstant.ACT_CAT_PPAYMENT:
 				principalPaid += activity.getAmount();
 				break;
@@ -55,48 +55,63 @@ public class ReportUtil {
 				break;
 			}
 		}
-		if(loanDate== null) 
+		if (loanDate == null)
 			throw new TmbMsException(TmbMsErrorCode.CAL_INTEREST_NO_PRINCIPAL);
 		Date dateCursor = loanDate;
 		double runningPrincipal = principal;
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		if(calculateDays(loanDate, endDate)<=TmbMsConstant.MIN_INTEREST_DAYS) {
-			interestAccrued = principal*TmbMsConstant.INTEREST_RATE_DAY*TmbMsConstant.MIN_INTEREST_DAYS;
+		if (calculateDays(loanDate, endDate) <= TmbMsConstant.MIN_INTEREST_DAYS) {
+			interestAccrued = principal * TmbMsConstant.INTEREST_RATE_DAY * TmbMsConstant.MIN_INTEREST_DAYS;
 			runningString = "| " + sdf.format(loanDate) + " - " + sdf.format(endDate) + " = "
-					+ calculateDays(loanDate, endDate) + " days rounded to minimum " 
-					+ TmbMsConstant.MIN_INTEREST_DAYS + " days #Int=" + Math.round(interestAccrued); 
+					+ calculateDays(loanDate, endDate) + " days rounded to minimum " + TmbMsConstant.MIN_INTEREST_DAYS
+					+ " days #Int=" + Math.round(interestAccrued);
 		} else {
 			double interestHolder = 0;
 			for (Activity activity : activityList) {
 				if (activity.getCategory().equalsIgnoreCase(TmbMsConstant.ACT_CAT_PPAYMENT)) {
-					interestHolder = runningPrincipal * TmbMsConstant.INTEREST_RATE_DAY * calculateDays(dateCursor, activity.getDate());
+					interestHolder = runningPrincipal * TmbMsConstant.INTEREST_RATE_DAY
+							* calculateDays(dateCursor, activity.getDate());
 					interestAccrued += interestHolder;
 					runningString += " | " + sdf.format(dateCursor) + " - " + sdf.format(activity.getDate()) + " = "
-							+ calculateDays(dateCursor, activity.getDate()) + " days #Int=" + Math.round(interestHolder);
+							+ calculateDays(dateCursor, activity.getDate()) + " days #Int="
+							+ Math.round(interestHolder);
 					dateCursor = activity.getDate();
 					runningPrincipal -= activity.getAmount();
 				}
-				endDate = activity.getDate().compareTo(endDate)>0?activity.getDate():endDate;
+				endDate = activity.getDate().compareTo(endDate) > 0 ? activity.getDate() : endDate;
 			}
-			interestHolder = runningPrincipal*TmbMsConstant.INTEREST_RATE_DAY * calculateDays(dateCursor, endDate);
+			interestHolder = runningPrincipal * TmbMsConstant.INTEREST_RATE_DAY * calculateDays(dateCursor, endDate);
 			interestAccrued += interestHolder;
 			runningString += " | " + sdf.format(dateCursor) + " - " + sdf.format(endDate) + " = "
 					+ calculateDays(dateCursor, endDate) + " days #Int=" + Math.round(interestHolder);
 		}
-		interestAccrued = Math.round(interestAccrued/5)*5;
-		outstandingResponse.setValuation((int)(loan.getWeight()*(scraperService.getGoldRate().getGoldRate()-600)));
+		interestAccrued = Math.round(interestAccrued / 5) * 5;
+		outstandingResponse.setValuation(getValuation(loan));
 		outstandingResponse.setTotalDays(calculateDays(loanDate, endDate));
 		outstandingResponse.setPrincipal(principal);
 		outstandingResponse.setPrincipalPaid(principalPaid);
-		outstandingResponse.setPrincipalOutstanding(principal-principalPaid);
+		outstandingResponse.setPrincipalOutstanding(principal - principalPaid);
 		outstandingResponse.setInterest(interestAccrued);
 		outstandingResponse.setInterestPaid(interestPaid);
-		outstandingResponse.setInterestOutstanding(interestAccrued-interestPaid);
+		outstandingResponse.setInterestOutstanding(interestAccrued - interestPaid);
 		outstandingResponse.setCalcComment(runningString.trim());
 		return outstandingResponse;
 	}
+
+	public int getValuation(Loan loan) {
+		return (int) (loan.getWeight() * (scraperService.getGoldRate().getGoldRate() - 600));
+	}
+
+	public int getValuationPcnt(Loan loan) throws TmbMsException {
+		LoanOutstandingResponse outstandingResponse = calulateOutstanding(loan);
+		int valuationPcnt = (int) ((outstandingResponse.getPrincipalOutstanding()
+				+ outstandingResponse.getInterestOutstanding()) * 100) / outstandingResponse.getValuation();
+		valuationPcnt = 100 - Math.round(valuationPcnt);
+		return valuationPcnt;
+	}
+
 	private int calculateDays(Date startDate, Date endDate) {
-		int days = (int)((endDate.getTime() - startDate.getTime())/ TmbMsConstant.DAY_IN_MILLIS );
+		int days = (int) ((endDate.getTime() - startDate.getTime()) / TmbMsConstant.DAY_IN_MILLIS);
 		return days;
 	}
 }
