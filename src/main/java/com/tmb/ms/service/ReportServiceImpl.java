@@ -224,16 +224,16 @@ public class ReportServiceImpl implements ReportService {
 	private ValuationResponse seggregateLoansByValuation(List<Loan> loanList) throws TmbMsException {
 		ValuationResponse valuationResponse = new ValuationResponse();
 		for (Loan loan : loanList)
-			if (reportUtil.getValuationPcnt(loan) <= 25)
-				valuationResponse.getLoanVal25().add(loan);
-			else if (reportUtil.getValuationPcnt(loan) <= 50)
+			if (reportUtil.getValuationPcnt(loan) > 75)
+				valuationResponse.getLoanVal75().add(loan);
+			else if (reportUtil.getValuationPcnt(loan) > 50)
 				valuationResponse.getLoanVal50().add(loan);
-			else if (reportUtil.getValuationPcnt(loan) <= 70)
-				valuationResponse.getLoanVal70().add(loan);
-			else if (reportUtil.getValuationPcnt(loan) <= 85)
-				valuationResponse.getLoanVal85().add(loan);
-			else if (reportUtil.getValuationPcnt(loan) <= 100)
-				valuationResponse.getLoanVal100().add(loan);
+			else if (reportUtil.getValuationPcnt(loan) > 30)
+				valuationResponse.getLoanVal30().add(loan);
+			else if (reportUtil.getValuationPcnt(loan) > 15)
+				valuationResponse.getLoanVal15().add(loan);
+			else if (reportUtil.getValuationPcnt(loan) > 0)
+				valuationResponse.getLoanVal0().add(loan);
 			else
 				valuationResponse.getLoanValX().add(loan);
 		return valuationResponse;

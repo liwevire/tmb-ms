@@ -102,7 +102,7 @@ public class ReportUtil {
 		if (loan.getWeight() > 0)
 			return (int) (loan.getWeight() * (scraperService.getGoldRate().getGoldRate() - 600));
 		else
-			return -1;
+			return 1;
 	}
 
 	public int getValuationPcnt(Loan loan) throws TmbMsException {
