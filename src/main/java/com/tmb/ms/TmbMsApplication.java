@@ -24,7 +24,6 @@ public class TmbMsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TmbMsApplication.class, args);
 	}
-	
 	@Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
