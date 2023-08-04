@@ -14,8 +14,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.SQLiteDialect
   output:
-    ansi:      enabled: always
+    ansi:
+      enabled: always
 logging:
-  file: ./logs/tmb-ms.log
+  file:
+    name: ./logs/tmb-ms.log
   level:
-    org.springframework.web: info
+    '[org.springframework.level]': info

@@ -39,7 +39,9 @@ public class ScraperServiceImpl implements ScraperService {
 		try {
 			misc = miscRepo.findById(1L).get();
 			if (misc.compareTo(new Date()) != 0) {
-				doc = Jsoup.connect("https://www.goodreturns.in/gold-rates/chennai.html").get();
+				doc = Jsoup.connect("https://www.goodreturns.in/gold-rates/chennai.html")
+						.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)")
+						.get();
 				Elements els = doc.select("div#current-price strong");
 				for (Element el : els) {
 					misc.setGoldRate(
