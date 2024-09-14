@@ -7,13 +7,13 @@ import java.net.MalformedURLException;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Base64;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Base64Utils;
 import org.springframework.util.StringUtils;
 
 import com.tmb.ms.dto.request.KycRequest;
@@ -31,7 +31,7 @@ public class KycServiceImpl implements KycService {
 		KycResponse kycResponse = new KycResponse();
 		Resource resource = null;
 		try {
-			Path copyLocation = Paths.get(uploadFolder, File.separator, StringUtils.cleanPath(Long.toString(id)+".face.jpg"));
+			Path copyLocation = Path.of(uploadFolder, File.separator, StringUtils.cleanPath(Long.toString(id)+".face.jpg"));
 			resource = new UrlResource(copyLocation.toUri());
 		} catch (InvalidPathException ipe) {
 			kycResponse.setStatusCode(TmbMsErrorCode.FILE_PATH_ERR.getErrCode());
@@ -53,7 +53,7 @@ public class KycServiceImpl implements KycService {
 	public CommonResponse updateCustomerPhoto(KycRequest request) {
 		CommonResponse commonResponse = new CommonResponse();
 		try {
-			byte[] fileByte=Base64Utils.decodeFromString(request.getData());
+			byte[] fileByte=Base64.getDecoder().decode(request.getData());
 			Path copyLocation = Paths.get(uploadFolder, File.separator, StringUtils.cleanPath(request.getId()+".face.jpg"));
 			FileOutputStream fos= new FileOutputStream(copyLocation.toString());
 			fos.write(fileByte);
