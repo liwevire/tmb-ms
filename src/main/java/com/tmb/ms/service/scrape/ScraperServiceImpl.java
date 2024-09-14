@@ -33,24 +33,18 @@ public class ScraperServiceImpl implements ScraperService {
 	private Logger logger = LoggerFactory.getLogger(ScraperServiceImpl.class);
 
 	public GoldRateResponse getGoldRate() {
-		Misc misc = new Misc();
+		Misc misc;
 		GoldRateResponse goldRateResponse = new GoldRateResponse();
-		Document doc;
+		
 		try {
-			misc = miscRepo.findById(1L).get();
-			if (misc.compareTo(new Date()) != 0) {
-				doc = Jsoup.connect("https://www.livechennai.com/gold_silverrate.asp")
-						.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)").get();
-				Elements els = doc.select("tbody,tr,td");
-				Element el = els.get(8);
-				els = el.select("tr,td");
-				el = els.get(4);
-				String resp = el.toString().split(">")[3].split("<")[0].replace(" ", "").replace(",", "");
-				misc.setGoldRate(Long.parseLong(NumberFormat.getNumberInstance(Locale.UK).parse(resp).toString()));
+			if(miscRepo.existsById(1L)) {
+				misc = miscRepo.findById(1L).get();
+				if(misc.compareTo(new Date()) != 0) 
+					misc = fetchCurrentRate();
 			}
-			misc.setDate(new Date());
-				misc = miscRepo.save(misc);
-			logger.info("fetched rate from external source");
+			else
+				misc = fetchCurrentRate();
+			misc = miscRepo.save(misc);
 			goldRateResponse = mapper.map(misc, GoldRateResponse.class);
 			goldRateResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			goldRateResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
@@ -70,7 +64,7 @@ public class ScraperServiceImpl implements ScraperService {
 			goldRateResponse.setStatusCode(TmbMsErrorCode.MAPPER_ERR.getErrCode());
 			goldRateResponse.setStatusMessage(TmbMsErrorCode.MAPPER_ERR.getErrMessage() + ":" + ceme.getMessage());
 			logger.error(goldRateResponse.toString() + ceme.getMessage(), ceme);
-		} catch (ParseException pe) {
+		} catch (ParseException|NumberFormatException pe) {
 			goldRateResponse.setStatusCode(TmbMsErrorCode.NUM_PARSE_ERR.getErrCode());
 			goldRateResponse.setStatusMessage(TmbMsErrorCode.NUM_PARSE_ERR.getErrMessage() + ":" + pe.getMessage());
 			logger.error(goldRateResponse.toString() + pe.getMessage(), pe);
@@ -81,4 +75,21 @@ public class ScraperServiceImpl implements ScraperService {
 		}
 		return goldRateResponse;
 	}
+	public Misc fetchCurrentRate() throws IOException, NumberFormatException, ParseException {
+		Document doc;
+		Misc misc = new Misc();
+			doc = Jsoup.connect("https://www.livechennai.com/gold_silverrate.asp")
+					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)").get();
+		Elements els = doc.select("tbody,tr,td");
+		Element el = els.get(8);
+		els = el.select("tr,td");
+		el = els.get(4);
+		String resp = el.toString().split(">")[3].split("<")[0].replace(" ", "").replace(",", "");
+		
+		misc.setGoldRate(Long.parseLong(NumberFormat.getNumberInstance(Locale.UK).parse(resp).toString()));
+		misc.setDate(new Date());
+		logger.info("fetched rate from external source");
+		return misc;
+	}
+	
 }
