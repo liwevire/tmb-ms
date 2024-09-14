@@ -8,7 +8,7 @@ spring:
     username:
     password:
     hikari:
-      maximum-pool-size: 1
+      maximum-pool-size: 3
   jpa:
     show-sql: false
     hibernate.ddl-auto: none
