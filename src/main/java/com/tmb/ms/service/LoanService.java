@@ -8,6 +8,9 @@ import com.tmb.ms.entity.Loan;
 
 public interface LoanService {
 	public List<Loan> get();
+	public List<Loan> getOpen();
+	public List<Loan> getClosed();
+	public List<Loan> getOther();
 	public LoanResponse getbyId(CommonRequest request);
 	public List<Loan> getbyCustId(CommonRequest request);
 	public LoanResponse add(Loan loan);

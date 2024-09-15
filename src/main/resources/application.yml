@@ -21,3 +21,7 @@ logging:
     name: ./logs/tmb-ms.log
   level:
     '[org.springframework.level]': info
+loan-status-open: open
+loan-status-closed: closed
+loan-status-other: other
+gold-rate-url: https://www.livechennai.com/gold_silverrate.asp

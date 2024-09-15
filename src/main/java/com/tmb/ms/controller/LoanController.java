@@ -35,6 +35,30 @@ public class LoanController {
 		logger.info(Integer.toString(loans.size()));
 		return loans;
 	}
+	
+	@GetMapping("/loan/getOpen")
+	private List<Loan> getOpen(HttpServletRequest request) {
+		logger.info(request.getRequestURI());
+		List<Loan> loans = loanService.getOpen();
+		logger.info(Integer.toString(loans.size()));
+		return loans;
+	}
+	
+	@GetMapping("/loan/getClosed")
+	private List<Loan> getClosed(HttpServletRequest request) {
+		logger.info(request.getRequestURI());
+		List<Loan> loans = loanService.getClosed();
+		logger.info(Integer.toString(loans.size()));
+		return loans;
+	}
+	
+	@GetMapping("/loan/getOther")
+	private List<Loan> getOther(HttpServletRequest request) {
+		logger.info(request.getRequestURI());
+		List<Loan> loans = loanService.getOther();
+		logger.info(Integer.toString(loans.size()));
+		return loans;
+	}
 
 	@PostMapping("/loan/getById")
 	private LoanResponse get(@RequestBody CommonRequest request) {

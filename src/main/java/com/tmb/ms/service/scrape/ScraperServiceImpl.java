@@ -18,17 +18,21 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tmb.ms.dto.response.GoldRateResponse;
 import com.tmb.ms.entity.Misc;
-import com.tmb.ms.repo.MiscRepo;
+//import com.tmb.ms.repo.MiscRepo;
 import com.tmb.ms.util.TmbMsErrorCode;
+import com.tmb.ms.util.YmlConfig;
 
 @Service
 public class ScraperServiceImpl implements ScraperService {
+//	@Autowired
+//	private MiscRepo miscRepo;
 	@Autowired
-	private MiscRepo miscRepo;
+	private YmlConfig ymlConfig;
 	private ModelMapper mapper = new ModelMapper();
 	private Logger logger = LoggerFactory.getLogger(ScraperServiceImpl.class);
 
@@ -37,14 +41,14 @@ public class ScraperServiceImpl implements ScraperService {
 		GoldRateResponse goldRateResponse = new GoldRateResponse();
 		
 		try {
-			if(miscRepo.existsById(1L)) {
-				misc = miscRepo.findById(1L).get();
-				if(misc.compareTo(new Date()) != 0) 
-					misc = fetchCurrentRate();
-			}
-			else
+//			if(miscRepo.existsById(1L)) {
+//				misc = miscRepo.findById(1L).get();
+//				if(misc.compareTo(new Date()) != 0) 
+//					misc = fetchCurrentRate();
+//			}
+//			else
 				misc = fetchCurrentRate();
-			misc = miscRepo.save(misc);
+//			misc = miscRepo.save(misc);
 			goldRateResponse = mapper.map(misc, GoldRateResponse.class);
 			goldRateResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			goldRateResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
@@ -78,7 +82,7 @@ public class ScraperServiceImpl implements ScraperService {
 	public Misc fetchCurrentRate() throws IOException, NumberFormatException, ParseException {
 		Document doc;
 		Misc misc = new Misc();
-			doc = Jsoup.connect("https://www.livechennai.com/gold_silverrate.asp")
+			doc = Jsoup.connect(ymlConfig.getGoldRateUrl())
 					.userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)").get();
 		Elements els = doc.select("tbody,tr,td");
 		Element el = els.get(8);

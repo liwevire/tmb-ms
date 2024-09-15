@@ -24,7 +24,9 @@ import com.tmb.ms.repo.ActivityRepo;
 import com.tmb.ms.repo.CustomerRepo;
 import com.tmb.ms.repo.ItemRepo;
 import com.tmb.ms.repo.LoanRepo;
+import com.tmb.ms.util.YmlConfig;
 import com.tmb.ms.util.LoanUtil;
+import com.tmb.ms.util.TmbMsConstant;
 import com.tmb.ms.util.TmbMsErrorCode;
 
 @Service
@@ -40,6 +42,8 @@ public class LoanServiceImpl implements LoanService {
 	private ActivityRepo activityRepo;
 	@Autowired
 	private LoanUtil loanUtil;
+	@Autowired
+	private YmlConfig ymlConfig;
 	private ModelMapper mapper = new ModelMapper();
 	private Logger logger = LoggerFactory.getLogger(LoanServiceImpl.class);
 
@@ -54,6 +58,39 @@ public class LoanServiceImpl implements LoanService {
 		return loans;
 	}
 
+	@Override
+	public List<Loan> getOpen() {
+		List<Loan> loans = new ArrayList<Loan>();
+		try {
+			loans = loanRepo.findByStatus(TmbMsConstant.LOAN_STS_OPEN);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		return loans;
+	}
+	
+	@Override
+	public List<Loan> getClosed() {
+		List<Loan> loans = new ArrayList<Loan>();
+		try {
+			loans = loanRepo.findByStatus(TmbMsConstant.LOAN_STS_CLOSED);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		return loans;
+	}
+	
+	@Override
+	public List<Loan> getOther() {
+		List<Loan> loans = new ArrayList<Loan>();
+		try {
+			loans = loanRepo.findByStatus(ymlConfig.getLoanStatusOther());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+		return loans;
+	}
+	
 	@Override
 	public LoanResponse getbyId(CommonRequest request) {
 		LoanResponse loanResponse = new LoanResponse();
