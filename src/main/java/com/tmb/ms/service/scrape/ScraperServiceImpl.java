@@ -47,8 +47,16 @@ public class ScraperServiceImpl implements ScraperService {
 //					misc = fetchCurrentRate();
 //			}
 //			else
-				misc = fetchCurrentRate();
+//				misc = fetchCurrentRate();
 //			misc = miscRepo.save(misc);
+			if (ymlConfig.getGoldRate() != null && ymlConfig.getGoldRate() != 0) {
+				misc = new Misc();
+				misc.setGoldRate(ymlConfig.getGoldRate());
+			}
+			else {
+				misc = fetchCurrentRate();
+				ymlConfig.setGoldRate(misc.getGoldRate());
+			}
 			goldRateResponse = mapper.map(misc, GoldRateResponse.class);
 			goldRateResponse.setStatusCode(TmbMsErrorCode.SUCCESS.getErrCode());
 			goldRateResponse.setStatusMessage(TmbMsErrorCode.SUCCESS.getErrMessage());
@@ -89,7 +97,6 @@ public class ScraperServiceImpl implements ScraperService {
 		els = el.select("tr,td");
 		el = els.get(4);
 		String resp = el.toString().split(">")[3].split("<")[0].replace(" ", "").replace(",", "");
-		
 		misc.setGoldRate(Long.parseLong(NumberFormat.getNumberInstance(Locale.UK).parse(resp).toString()));
 		misc.setDate(new Date());
 		logger.info("fetched rate from external source");

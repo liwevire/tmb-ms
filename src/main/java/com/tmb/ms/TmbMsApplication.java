@@ -10,6 +10,8 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.google.common.collect.ImmutableList;
+import com.tmb.ms.dto.response.GoldRateResponse;
+import com.tmb.ms.service.scrape.ScraperServiceImpl;
 
 @SpringBootApplication
 public class TmbMsApplication {
@@ -44,4 +46,5 @@ public class TmbMsApplication {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+       
 }

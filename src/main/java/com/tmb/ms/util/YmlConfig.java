@@ -19,4 +19,5 @@ public class YmlConfig {
 	private String loanStatusOpen;
 	private String loanStatusClosed;
 	private String loanStatusOther;
+	private Long goldRate;
 }

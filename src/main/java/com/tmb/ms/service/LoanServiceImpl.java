@@ -121,7 +121,6 @@ public class LoanServiceImpl implements LoanService {
 	}
 	@Override
 	public List<Loan> getbyCustId(CommonRequest request) {
-		// LoanResponse loanResponse = new LoanResponse();
 		List<Loan> loans = new ArrayList<Loan>();
 		try {
 			Customer customer = customerRepo.findById(request.getId()).get();

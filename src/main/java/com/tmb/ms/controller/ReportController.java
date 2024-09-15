@@ -55,4 +55,12 @@ public class ReportController {
 		logger.info(valuationResponse.toString());
 		return valuationResponse;
 	}
+	
+	@GetMapping("/report/customerOpenValue")
+	private ValuationResponse getCustomerByOpenValue(HttpServletRequest request) {
+		logger.info(request.getRequestURI());
+		ValuationResponse valuationResponse = reportService.getValuationReport();
+		logger.info(valuationResponse.toString());
+		return valuationResponse;
+	}
 }

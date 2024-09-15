@@ -1,8 +1,10 @@
 package com.tmb.ms.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -16,10 +18,12 @@ import org.springframework.stereotype.Service;
 
 import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.request.DatedReportRequest;
+import com.tmb.ms.dto.response.CustomerOutstandingResponse;
 import com.tmb.ms.dto.response.LoanOutstandingResponse;
 import com.tmb.ms.dto.response.LoanResponse;
 import com.tmb.ms.dto.response.ReportOutstandingResponse;
 import com.tmb.ms.dto.response.ValuationResponse;
+import com.tmb.ms.entity.Customer;
 import com.tmb.ms.entity.Loan;
 import com.tmb.ms.repo.LoanRepo;
 import com.tmb.ms.repo.ReportRepo;
@@ -220,7 +224,7 @@ public class ReportServiceImpl implements ReportService {
 		}
 		return valuationResponse;
 	}
-
+	
 	private ValuationResponse seggregateLoansByValuation(List<Loan> loanList) throws TmbMsException {
 		ValuationResponse valuationResponse = new ValuationResponse();
 		for (Loan loan : loanList)
@@ -257,6 +261,32 @@ public class ReportServiceImpl implements ReportService {
 		reportResponse.setLoanCountClosed(loanCountClosed);
 		reportResponse.setLoans(loanList);
 		return reportResponse;
+	}
+
+	@Override
+	public List<Customer> getCustomerByOpenValue() {
+		List<Customer> customers = new ArrayList<Customer>();
+		List<Loan> loans = new ArrayList<Loan>();
+		CommonRequest request = new CommonRequest();
+		Map<Long, LoanOutstandingResponse> custOutstandingMap = new HashMap<>();
+		CustomerOutstandingResponse custOutstandingResponse = new CustomerOutstandingResponse(); 
+		
+		LoanOutstandingResponse lor = new LoanOutstandingResponse();
+		LoanOutstandingResponse lorCumulative = new LoanOutstandingResponse();
+		
+		
+		loans = loanRepo.findByStatus(TmbMsConstant.LOAN_STS_OPEN);
+		for (Loan loan : loans) {
+			request.setId(loan.getId());
+			lor =  calculateInterest(request);
+			if(!custOutstandingMap.isEmpty()&&custOutstandingMap.containsKey(loan.getCustomer().getId()))
+				//custOutstandingMap.get
+				System.out.println("");
+			else
+				custOutstandingMap.put(loan.getCustomer().getId(), lor);
+		}
+		
+		return null;
 	}
 
 }
