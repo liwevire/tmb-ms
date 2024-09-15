@@ -17,4 +17,16 @@ public class LoanOutstandingResponse extends CommonResponse{
 	private int totalDays;
 	private String calcComment;
 	private int valuation;
+	
+	public LoanOutstandingResponse addOutstanding (LoanOutstandingResponse lor) {
+		this.principal+= lor.principal;
+		this.principalPaid+= lor.principalPaid;
+		this.principalOutstanding+= lor.principalOutstanding;
+		this.interest+= lor.interest;
+		this.interestPaid+= lor.interestPaid;
+		this.interestOutstanding+= lor.interestOutstanding;
+		this.totalDays+= lor.totalDays;
+		this.valuation+= lor.valuation;
+		return this;
+	}
 }

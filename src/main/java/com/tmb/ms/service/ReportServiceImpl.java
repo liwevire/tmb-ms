@@ -224,7 +224,7 @@ public class ReportServiceImpl implements ReportService {
 		}
 		return valuationResponse;
 	}
-	
+
 	private ValuationResponse seggregateLoansByValuation(List<Loan> loanList) throws TmbMsException {
 		ValuationResponse valuationResponse = new ValuationResponse();
 		for (Loan loan : loanList)
@@ -265,27 +265,26 @@ public class ReportServiceImpl implements ReportService {
 
 	@Override
 	public List<Customer> getCustomerByOpenValue() {
-		List<Customer> customers = new ArrayList<Customer>();
 		List<Loan> loans = new ArrayList<Loan>();
 		CommonRequest request = new CommonRequest();
 		Map<Long, LoanOutstandingResponse> custOutstandingMap = new HashMap<>();
-		CustomerOutstandingResponse custOutstandingResponse = new CustomerOutstandingResponse(); 
-		
+		CustomerOutstandingResponse custOutstandingResponse = new CustomerOutstandingResponse();
+
 		LoanOutstandingResponse lor = new LoanOutstandingResponse();
-		LoanOutstandingResponse lorCumulative = new LoanOutstandingResponse();
-		
-		
+
 		loans = loanRepo.findByStatus(TmbMsConstant.LOAN_STS_OPEN);
 		for (Loan loan : loans) {
 			request.setId(loan.getId());
-			lor =  calculateInterest(request);
-			if(!custOutstandingMap.isEmpty()&&custOutstandingMap.containsKey(loan.getCustomer().getId()))
-				//custOutstandingMap.get
-				System.out.println("");
-			else
-				custOutstandingMap.put(loan.getCustomer().getId(), lor);
+			lor = calculateInterest(request);
+			if (!custOutstandingMap.isEmpty() && custOutstandingMap.containsKey(loan.getCustomer().getId())) {
+				lor.addOutstanding(custOutstandingMap.get(loan.getCustomer().getId()));
+			} 
+			custOutstandingMap.put(loan.getCustomer().getId(), lor);
 		}
-		
+		for (Map.Entry<Long, LoanOutstandingResponse> entry : custOutstandingMap.entrySet()) {
+			System.out.println(entry.getKey());
+			System.out.println(entry.getValue().toString());
+		}
 		return null;
 	}
 
