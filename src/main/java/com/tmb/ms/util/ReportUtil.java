@@ -107,12 +107,9 @@ public class ReportUtil {
 
 	public int getValuationPcnt(Loan loan) throws TmbMsException {
 		LoanOutstandingResponse outstandingResponse = calulateOutstanding(loan);
-		int valuationPcnt = (int) ((outstandingResponse.getPrincipalOutstanding()
-				+ outstandingResponse.getInterestOutstanding()) * 100) / outstandingResponse.getValuation();
-		valuationPcnt = 100 - Math.round(valuationPcnt);
-		return valuationPcnt;
+		return outstandingResponse.calculateValuationPrcnt();
 	}
-
+	
 	private int calculateDays(Date startDate, Date endDate) {
 		int days = (int) ((endDate.getTime() - startDate.getTime()) / TmbMsConstant.DAY_IN_MILLIS);
 		return days;

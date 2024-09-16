@@ -25,6 +25,7 @@ import com.tmb.ms.dto.response.ReportOutstandingResponse;
 import com.tmb.ms.dto.response.ValuationResponse;
 import com.tmb.ms.entity.Customer;
 import com.tmb.ms.entity.Loan;
+import com.tmb.ms.repo.CustomerRepo;
 import com.tmb.ms.repo.LoanRepo;
 import com.tmb.ms.repo.ReportRepo;
 import com.tmb.ms.util.ReportUtil;
@@ -39,6 +40,8 @@ public class ReportServiceImpl implements ReportService {
 	private ReportRepo reportRepo;
 	@Autowired
 	private LoanRepo loanRepo;
+	@Autowired
+	private CustomerRepo custRepo;
 	@Autowired
 	private LoanService loanService;
 	@Autowired
@@ -264,28 +267,49 @@ public class ReportServiceImpl implements ReportService {
 	}
 
 	@Override
-	public List<Customer> getCustomerByOpenValue() {
+	public List<CustomerOutstandingResponse> getCustomerByOpenValue() {
 		List<Loan> loans = new ArrayList<Loan>();
 		CommonRequest request = new CommonRequest();
-		Map<Long, LoanOutstandingResponse> custOutstandingMap = new HashMap<>();
-		CustomerOutstandingResponse custOutstandingResponse = new CustomerOutstandingResponse();
-
+		Map<Long, CustomerOutstandingResponse> com = new HashMap<>();
+		List<CustomerOutstandingResponse> col = new ArrayList<>();
+		CustomerOutstandingResponse custOutstanding = new CustomerOutstandingResponse();
+		
 		LoanOutstandingResponse lor = new LoanOutstandingResponse();
+		Customer customer;
 
 		loans = loanRepo.findByStatus(TmbMsConstant.LOAN_STS_OPEN);
 		for (Loan loan : loans) {
 			request.setId(loan.getId());
 			lor = calculateInterest(request);
-			if (!custOutstandingMap.isEmpty() && custOutstandingMap.containsKey(loan.getCustomer().getId())) {
-				lor.addOutstanding(custOutstandingMap.get(loan.getCustomer().getId()));
-			} 
-			custOutstandingMap.put(loan.getCustomer().getId(), lor);
+			if (!com.isEmpty() && com.containsKey(loan.getCustomer().getId())) {
+				lor.addOutstanding(com.get(loan.getCustomer().getId()).getLoanOutstandingResponse());
+				custOutstanding.setLoanOutstandingResponse(lor);
+			}
+			else {
+				custOutstanding = new CustomerOutstandingResponse();
+				custOutstanding.setLoanOutstandingResponse(lor);
+				customer = custRepo.findById(loan.getCustomer().getId()).get();
+				custOutstanding.setName(customer.getName());
+				custOutstanding.setSecondaryName(customer.getSecondaryName());
+			}
+			com.put(loan.getCustomer().getId(), custOutstanding);
 		}
-		for (Map.Entry<Long, LoanOutstandingResponse> entry : custOutstandingMap.entrySet()) {
+		
+		for (Map.Entry<Long, CustomerOutstandingResponse> entry : com.entrySet()) {
+			custOutstanding = entry.getValue();
 			System.out.println(entry.getKey());
-			System.out.println(entry.getValue().toString());
+			custOutstanding.setId(entry.getKey());
+			custOutstanding.addLoanCounter();
+			customer = custRepo.findById(entry.getKey()).get();
+			custOutstanding.setName(customer.getName());
+			custOutstanding.setSecondaryName(customer.getSecondaryName());
+			
+			entry.getValue().getLoanOutstandingResponse().calculateValuationPrcnt();
+			custOutstanding.setLoanOutstandingResponse(entry.getValue().getLoanOutstandingResponse());
+			col.add(custOutstanding);
 		}
-		return null;
+		return col;
 	}
-
+	
+	
 }

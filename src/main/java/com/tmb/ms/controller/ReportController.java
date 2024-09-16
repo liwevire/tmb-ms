@@ -2,6 +2,8 @@ package com.tmb.ms.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tmb.ms.dto.request.CommonRequest;
 import com.tmb.ms.dto.request.DatedReportRequest;
+import com.tmb.ms.dto.response.CustomerOutstandingResponse;
 import com.tmb.ms.dto.response.LoanOutstandingResponse;
 import com.tmb.ms.dto.response.ReportOutstandingResponse;
 import com.tmb.ms.dto.response.ValuationResponse;
@@ -57,9 +60,9 @@ public class ReportController {
 	}
 	
 	@GetMapping("/report/customerOpenValue")
-	private ValuationResponse getCustomerByOpenValue(HttpServletRequest request) {
+	private List<CustomerOutstandingResponse> getCustomerByOpenValue(HttpServletRequest request) {
 		logger.info(request.getRequestURI());
-		reportService.getCustomerByOpenValue();
-		return null;
+		List<CustomerOutstandingResponse> custOutstandingList =  reportService.getCustomerByOpenValue();
+		return custOutstandingList;
 	}
 }

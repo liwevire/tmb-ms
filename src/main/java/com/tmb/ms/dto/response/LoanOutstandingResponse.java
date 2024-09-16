@@ -17,6 +17,7 @@ public class LoanOutstandingResponse extends CommonResponse{
 	private int totalDays;
 	private String calcComment;
 	private int valuation;
+	private int valuationPrcnt;
 	
 	public LoanOutstandingResponse addOutstanding (LoanOutstandingResponse lor) {
 		this.principal+= lor.principal;
@@ -28,5 +29,10 @@ public class LoanOutstandingResponse extends CommonResponse{
 		this.totalDays+= lor.totalDays;
 		this.valuation+= lor.valuation;
 		return this;
+	}
+	
+	public int calculateValuationPrcnt() {
+		this.valuationPrcnt = (int)(100 - Math.round(((this.principalOutstanding+ this.interestOutstanding)*100)/this.valuation));
+		return this.valuationPrcnt;
 	}
 }

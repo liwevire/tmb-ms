@@ -87,6 +87,7 @@ public class ScraperServiceImpl implements ScraperService {
 		}
 		return goldRateResponse;
 	}
+	
 	public Misc fetchCurrentRate() throws IOException, NumberFormatException, ParseException {
 		Document doc;
 		Misc misc = new Misc();
@@ -102,5 +103,4 @@ public class ScraperServiceImpl implements ScraperService {
 		logger.info("fetched rate from external source");
 		return misc;
 	}
-	
 }
