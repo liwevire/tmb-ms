@@ -282,7 +282,8 @@ public class ReportServiceImpl implements ReportService {
 			request.setId(loan.getId());
 			lor = calculateInterest(request);
 			if (!com.isEmpty() && com.containsKey(loan.getCustomer().getId())) {
-				lor.addOutstanding(com.get(loan.getCustomer().getId()).getLoanOutstandingResponse());
+				custOutstanding = com.get(loan.getCustomer().getId());
+				lor.addOutstanding(custOutstanding.getLoanOutstandingResponse());
 				custOutstanding.setLoanOutstandingResponse(lor);
 			}
 			else {
@@ -292,18 +293,13 @@ public class ReportServiceImpl implements ReportService {
 				custOutstanding.setName(customer.getName());
 				custOutstanding.setSecondaryName(customer.getSecondaryName());
 			}
+			custOutstanding.addLoanCounter();
 			com.put(loan.getCustomer().getId(), custOutstanding);
 		}
 		
 		for (Map.Entry<Long, CustomerOutstandingResponse> entry : com.entrySet()) {
 			custOutstanding = entry.getValue();
-			System.out.println(entry.getKey());
 			custOutstanding.setId(entry.getKey());
-			custOutstanding.addLoanCounter();
-			customer = custRepo.findById(entry.getKey()).get();
-			custOutstanding.setName(customer.getName());
-			custOutstanding.setSecondaryName(customer.getSecondaryName());
-			
 			entry.getValue().getLoanOutstandingResponse().calculateValuationPrcnt();
 			custOutstanding.setLoanOutstandingResponse(entry.getValue().getLoanOutstandingResponse());
 			col.add(custOutstanding);
