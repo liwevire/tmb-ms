@@ -288,10 +288,9 @@ public class ReportServiceImpl implements ReportService {
 			}
 			else {
 				custOutstanding = new CustomerOutstandingResponse();
-				custOutstanding.setLoanOutstandingResponse(lor);
 				customer = custRepo.findById(loan.getCustomer().getId()).get();
-				custOutstanding.setName(customer.getName());
-				custOutstanding.setSecondaryName(customer.getSecondaryName());
+				custOutstanding = mapper.map(customer, CustomerOutstandingResponse.class);
+				custOutstanding.setLoanOutstandingResponse(lor);
 			}
 			custOutstanding.addLoanCounter();
 			com.put(loan.getCustomer().getId(), custOutstanding);

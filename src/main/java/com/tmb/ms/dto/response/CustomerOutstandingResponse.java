@@ -11,6 +11,7 @@ public class CustomerOutstandingResponse {
 	private long id;
 	private String name;
 	private String secondaryName;
+	private String post;
 	private int loanCounter;
 	private LoanOutstandingResponse loanOutstandingResponse;
 	public void addLoanCounter() {
